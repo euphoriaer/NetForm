@@ -50,6 +50,8 @@
 			Controls.Add(newFormBtn);
 			Name = "Main";
 			Text = "Main";
+			KeyDown += Main_KeyDown;
+			MouseClick += Main_MouseClick;
 			ResumeLayout(false);
 		}
 

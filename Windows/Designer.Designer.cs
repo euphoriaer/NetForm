@@ -29,21 +29,20 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Designer));
-			toolStrip1 = new ToolStrip();
+			toolStripButton3 = new ToolStripButton();
 			toolStripButton1 = new ToolStripButton();
-			toolStripButton2 = new ToolStripButton();
-			toolStripSplitButton1 = new ToolStripSplitButton();
+			toolStrip1 = new ToolStrip();
 			toolStrip1.SuspendLayout();
 			SuspendLayout();
 			// 
-			// toolStrip1
+			// toolStripButton3
 			// 
-			toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton1, toolStripButton2, toolStripSplitButton1 });
-			toolStrip1.Location = new Point(0, 0);
-			toolStrip1.Name = "toolStrip1";
-			toolStrip1.Size = new Size(1659, 25);
-			toolStrip1.TabIndex = 0;
-			toolStrip1.Text = "toolStrip1";
+			toolStripButton3.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			toolStripButton3.Image = (Image)resources.GetObject("toolStripButton3.Image");
+			toolStripButton3.ImageTransparentColor = Color.Magenta;
+			toolStripButton3.Name = "toolStripButton3";
+			toolStripButton3.Size = new Size(36, 36);
+			toolStripButton3.Text = "toolStripButton3";
 			// 
 			// toolStripButton1
 			// 
@@ -51,35 +50,37 @@
 			toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
 			toolStripButton1.ImageTransparentColor = Color.Magenta;
 			toolStripButton1.Name = "toolStripButton1";
-			toolStripButton1.Size = new Size(23, 22);
+			toolStripButton1.Size = new Size(36, 36);
 			toolStripButton1.Text = "toolStripButton1";
 			// 
-			// toolStripButton2
+			// toolStrip1
 			// 
-			toolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			toolStripButton2.Image = (Image)resources.GetObject("toolStripButton2.Image");
-			toolStripButton2.ImageTransparentColor = Color.Magenta;
-			toolStripButton2.Name = "toolStripButton2";
-			toolStripButton2.Size = new Size(23, 22);
-			toolStripButton2.Text = "toolStripButton2";
-			// 
-			// toolStripSplitButton1
-			// 
-			toolStripSplitButton1.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			toolStripSplitButton1.Image = (Image)resources.GetObject("toolStripSplitButton1.Image");
-			toolStripSplitButton1.ImageTransparentColor = Color.Magenta;
-			toolStripSplitButton1.Name = "toolStripSplitButton1";
-			toolStripSplitButton1.Size = new Size(32, 22);
-			toolStripSplitButton1.Text = "toolStripSplitButton1";
+			toolStrip1.BackColor = SystemColors.ButtonShadow;
+			toolStrip1.GripMargin = new Padding(6);
+			toolStrip1.ImageScalingSize = new Size(32, 32);
+			toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton3, toolStripButton1 });
+			toolStrip1.Location = new Point(0, 0);
+			toolStrip1.Name = "toolStrip1";
+			toolStrip1.Size = new Size(1659, 39);
+			toolStrip1.TabIndex = 0;
+			toolStrip1.Text = "toolStrip1";
 			// 
 			// Designer
 			// 
 			AutoScaleDimensions = new SizeF(7F, 17F);
 			AutoScaleMode = AutoScaleMode.Font;
+			AutoScroll = true;
+			AutoSize = true;
 			ClientSize = new Size(1659, 854);
 			Controls.Add(toolStrip1);
 			Name = "Designer";
 			Text = "Designer";
+			Load += Designer_Load;
+			KeyDown += Designer_KeyDown;
+			KeyPress += Designer_KeyPress;
+			MouseDown += Designer_MouseDown;
+			MouseMove += Designer_MouseMove;
+			MouseUp += Designer_MouseUp;
 			toolStrip1.ResumeLayout(false);
 			toolStrip1.PerformLayout();
 			ResumeLayout(false);
@@ -87,10 +88,8 @@
 		}
 
 		#endregion
-
-		private ToolStrip toolStrip1;
+		private ToolStripButton toolStripButton3;
 		private ToolStripButton toolStripButton1;
-		private ToolStripButton toolStripButton2;
-		private ToolStripSplitButton toolStripSplitButton1;
+		private ToolStrip toolStrip1;
 	}
 }

@@ -8,16 +8,27 @@ namespace NetForm.Data
 {
 	public class DesignerData
 	{
-		public Dictionary<string,DesignerMeta> metas = new Dictionary<string, DesignerMeta>();
+		public Layer Root;
 		public DesignerData(Layer root) 
 		{
-
+			Root = root;
 		}
 	}
 
 	public class Layer
 	{
-		public Dictionary<string, DesignerMeta> metas = new Dictionary<string, DesignerMeta>();
+		public SortedDictionary<string, DesignerMeta> metas = new SortedDictionary<string, DesignerMeta>();
+		public void CreateDefaultMeta()
+		{
+			DesignerMeta root = new DesignerMeta()
+			{
+				Name = "ID",
+				Value = 0,
+				Description = "null",
+
+			};
+			metas.Add("root", root);
+		}
 	}
 
 	public class DesignerMeta
