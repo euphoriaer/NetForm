@@ -40,6 +40,7 @@
 			newFormBtn.Size = new Size(100, 35);
 			newFormBtn.TabIndex = 0;
 			newFormBtn.Text = "创建新表";
+			newFormBtn.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
 			newFormBtn.Click += CreateForm_Click;
 			// 
 			// Main
@@ -50,6 +51,7 @@
 			Controls.Add(newFormBtn);
 			Name = "Main";
 			Text = "Main";
+			Load += Main_Load;
 			KeyDown += Main_KeyDown;
 			MouseClick += Main_MouseClick;
 			ResumeLayout(false);

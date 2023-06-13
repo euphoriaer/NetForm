@@ -23,21 +23,30 @@ namespace NetForm
 		private void CreateForm_Click(object sender, EventArgs e)
 		{
 			//构建一个根设计
-			Layer layer = new Layer();
-			layer.CreateDefaultMeta();
-			DesignerData data = new DesignerData(layer);
+			Layer rootLayer = new Layer();
+
+			rootLayer.CreateDefaultMeta();
+
+			DesignerData data = new DesignerData(rootLayer);
+
 			var des = new Designer(data);
+
 			des.ShowDialog();
 		}
 
 		private void Main_KeyDown(object sender, KeyEventArgs e)
 		{
-			
+
 		}
 
 		private void Main_MouseClick(object sender, MouseEventArgs e)
 		{
-			
+
+		}
+
+		private void Main_Load(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

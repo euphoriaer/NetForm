@@ -17,7 +17,9 @@ namespace NetForm.Data
 
 	public class Layer
 	{
-		public SortedDictionary<string, DesignerMeta> metas = new SortedDictionary<string, DesignerMeta>();
+		public int Level = 0;
+
+		public List<DesignerMeta> metas = new List<DesignerMeta>();
 		public void CreateDefaultMeta()
 		{
 			DesignerMeta root = new DesignerMeta()
@@ -27,7 +29,7 @@ namespace NetForm.Data
 				Description = "null",
 
 			};
-			metas.Add("root", root);
+			metas.Add(root);
 		}
 	}
 
