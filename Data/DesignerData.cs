@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiteDB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,17 @@ namespace NetForm.Data
 {
 	public class DesignerData
 	{
-		public Layer Root;
+		[BsonId]
+		public ObjectId CustomerId { get; set; }
+
+		public Layer Root { get; set; }
 		public DesignerData(Layer root) 
 		{
 			Root = root;
+		}
+		public DesignerData()
+		{
+			
 		}
 	}
 
@@ -19,18 +27,19 @@ namespace NetForm.Data
 	{
 		public int Level = 0;
 
-		public List<DesignerMeta> metas = new List<DesignerMeta>();
+		public List<DesignerMeta> metas  { get; set; }=new List<DesignerMeta>();
+
 		public void CreateDefaultMeta()
 		{
 			DesignerMeta root = new DesignerMeta()
 			{
 				Name = "ID",
-				Value = 0,
 				Description = "null",
 
 			};
 			metas.Add(root);
 		}
+		
 	}
 
 	public class DesignerMeta
@@ -41,7 +50,7 @@ namespace NetForm.Data
 		/// <summary>
 		/// 值 数组 字典  Index(目标表的id)
 		/// </summary>
-		public Object Value;
+		public ValueType Type { get; set; }
 
 		public Layer Son { get; set; }
 
@@ -50,6 +59,15 @@ namespace NetForm.Data
 			public string FormName { get; set; }
 
 			public int ID { get; set; }
+		}
+
+		public enum ValueType
+		{
+			Int,
+			Float,
+			String,
+			Index,
+			Bool,
 		}
 	}
 

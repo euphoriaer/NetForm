@@ -1,4 +1,5 @@
-﻿using NetForm.Data;
+﻿using LiteDB;
+using NetForm.Data;
 using Sunny.UI;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NetForm.LiteDB;
 
 namespace NetForm
 {
@@ -43,13 +45,13 @@ namespace NetForm
 			int Maxhight = layer.metas.Count * VerticalInternal;
 			int width = layer.Level * HorizontalInternal;
 
-			var firstPos = new Point(original.X + width, original.Y + Maxhight / 2);
+			var firstPos = new Point(original.X + width, original.Y +-Maxhight / 2);
 			MiddleMove += (x, y) =>
 			{
 				firstPos.X += x;
 				firstPos.Y += y;
 			};
-			
+
 			var CreateNewBtn = new UIButton();
 			for (int i = 0; i < layer.metas.Count; i++)
 			{
@@ -75,7 +77,7 @@ namespace NetForm
 				};
 				layer.metas.Add(newbtn);
 				CreateNewBtn.Location = new Point(firstPos.X, firstPos.Y + (layer.metas.Count) * VerticalInternal);
-				CreateButton(new Point(firstPos.X, firstPos.Y + (layer.metas.Count-1) * VerticalInternal), newbtn.Name, (o, e) =>
+				CreateButton(new Point(firstPos.X, firstPos.Y + (layer.metas.Count - 1) * VerticalInternal), newbtn.Name, (o, e) =>
 				{
 					//Todo 
 				});
@@ -163,7 +165,7 @@ namespace NetForm
 					curUI.Location = new Point(curUI.Location.X + dx, curUI.Location.Y + dy);
 				}
 
-				if (MiddleMove!=null)
+				if (MiddleMove != null)
 				{
 					MiddleMove(dx, dy);
 				}
@@ -176,6 +178,12 @@ namespace NetForm
 		private void Designer_MouseUp(object sender, MouseEventArgs e)
 		{
 
+		}
+
+		private void toolStripButton3_Click(object sender, EventArgs e)
+		{
+			//保存测试
+			LiteDbContext.Litedb.Designer.Update(designer);
 		}
 	}
 }

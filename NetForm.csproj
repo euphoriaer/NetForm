@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="LiteDB" Version="5.0.16" />
+    <PackageReference Include="MongoDB.Bson" Version="2.19.2" />
     <PackageReference Include="SunnyUI" Version="3.3.8" />
   </ItemGroup>
 

@@ -30,38 +30,30 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Designer));
 			toolStripButton3 = new ToolStripButton();
-			toolStripButton1 = new ToolStripButton();
 			toolStrip1 = new ToolStrip();
 			toolStrip1.SuspendLayout();
 			SuspendLayout();
 			// 
 			// toolStripButton3
 			// 
-			toolStripButton3.DisplayStyle = ToolStripItemDisplayStyle.Image;
 			toolStripButton3.Image = (Image)resources.GetObject("toolStripButton3.Image");
 			toolStripButton3.ImageTransparentColor = Color.Magenta;
 			toolStripButton3.Name = "toolStripButton3";
-			toolStripButton3.Size = new Size(36, 36);
-			toolStripButton3.Text = "toolStripButton3";
-			// 
-			// toolStripButton1
-			// 
-			toolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
-			toolStripButton1.ImageTransparentColor = Color.Magenta;
-			toolStripButton1.Name = "toolStripButton1";
-			toolStripButton1.Size = new Size(36, 36);
-			toolStripButton1.Text = "toolStripButton1";
+			toolStripButton3.Size = new Size(36, 53);
+			toolStripButton3.Text = "保存";
+			toolStripButton3.TextImageRelation = TextImageRelation.ImageAboveText;
+			toolStripButton3.ToolTipText = "保存";
+			toolStripButton3.Click += toolStripButton3_Click;
 			// 
 			// toolStrip1
 			// 
 			toolStrip1.BackColor = SystemColors.ButtonShadow;
 			toolStrip1.GripMargin = new Padding(6);
 			toolStrip1.ImageScalingSize = new Size(32, 32);
-			toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton3, toolStripButton1 });
+			toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton3 });
 			toolStrip1.Location = new Point(0, 0);
 			toolStrip1.Name = "toolStrip1";
-			toolStrip1.Size = new Size(1659, 39);
+			toolStrip1.Size = new Size(1659, 56);
 			toolStrip1.TabIndex = 0;
 			toolStrip1.Text = "toolStrip1";
 			// 
@@ -89,7 +81,6 @@
 
 		#endregion
 		private ToolStripButton toolStripButton3;
-		private ToolStripButton toolStripButton1;
 		private ToolStrip toolStrip1;
 	}
 }
