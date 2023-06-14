@@ -20,7 +20,7 @@ namespace NetForm
 {
 	public partial class Designer : Form
 	{
-		private DesignerData designer;
+		public DesignerData designer;
 		public Designer(DesignerData designerData)
 		{
 			designer = designerData;
@@ -191,6 +191,8 @@ namespace NetForm
 				designer.Name=name;
 				LiteDbContext.Litedb.Designer.Update(designer);
 			}
+			
+			this.DialogResult = DialogResult.OK;
 			
 		}
 	}

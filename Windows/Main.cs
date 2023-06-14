@@ -34,6 +34,13 @@ namespace NetForm
 				}
 			}
 			new LiteDbContext(path);
+
+			//FormList
+			var des = LiteDbContext.Litedb.Designer.GetDesigner();
+			for (int i = 0; i < des.Count; i++)
+			{
+				FormList.Items.Add(des[i].Name);
+			}
 		}
 
 		private void CreateForm_Click(object sender, EventArgs e)
@@ -47,7 +54,11 @@ namespace NetForm
 
 			var des = new Designer(data);
 
-			des.ShowDialog();
+			var res = des.ShowDialog();
+			if (res == DialogResult.OK)
+			{
+				FormList.Items.Add(des.designer.Name);
+			}
 		}
 
 		private void Main_KeyDown(object sender, KeyEventArgs e)
@@ -78,11 +89,12 @@ namespace NetForm
 		private void toolStripButton2_Click(object sender, EventArgs e)
 		{
 			var des = LiteDbContext.Litedb.Designer.GetDesigner();
-			var designer = des[0];
-
+			var index = FormList.SelectedIndex;
+			var designer = des[index];
 			var desWin = new Designer(designer);
 
-			desWin.ShowDialog();
+			var res= desWin.ShowDialog();
+			
 		}
 	}
 }
