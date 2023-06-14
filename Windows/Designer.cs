@@ -13,6 +13,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NetForm.LiteDB;
+using System.Xml.Linq;
+using static NetForm.LiteDB.LiteDbContext;
 
 namespace NetForm
 {
@@ -183,7 +185,13 @@ namespace NetForm
 		private void toolStripButton3_Click(object sender, EventArgs e)
 		{
 			//保存测试
-			LiteDbContext.Litedb.Designer.Update(designer);
+			string name="";
+			if (UIInputDialog.InputStringDialog(this, ref name,desc:"表名"))
+			{
+				designer.Name=name;
+				LiteDbContext.Litedb.Designer.Update(designer);
+			}
+			
 		}
 	}
 }

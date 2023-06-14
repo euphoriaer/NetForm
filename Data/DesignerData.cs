@@ -12,6 +12,8 @@ namespace NetForm.Data
 		[BsonId]
 		public ObjectId CustomerId { get; set; }
 
+		public string Name { get; set; }
+
 		public Layer Root { get; set; }
 		public DesignerData(Layer root) 
 		{
