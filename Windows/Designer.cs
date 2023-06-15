@@ -1,20 +1,9 @@
 ﻿using LiteDB;
 using NetForm.Data;
 using Sunny.UI;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using NetForm.LiteDB;
-using System.Xml.Linq;
-using static NetForm.LiteDB.LiteDbContext;
+
 
 namespace NetForm
 {
@@ -28,9 +17,10 @@ namespace NetForm
 			InitDesigner();
 		}
 		private List<UIControl> uIControls = new List<UIControl>();
+		private List<UserControl> userControl = new List<UserControl>();
 
 		public int HorizontalInternal = 20;
-		public int VerticalInternal = 40;
+		public int VerticalInternal = 80;
 		/// <summary>
 		/// dx,dy
 		/// </summary>
@@ -47,7 +37,7 @@ namespace NetForm
 			int Maxhight = layer.metas.Count * VerticalInternal;
 			int width = layer.Level * HorizontalInternal;
 
-			var firstPos = new Point(original.X + width, original.Y +-Maxhight / 2);
+			var firstPos = new Point(original.X + width, original.Y + -Maxhight / 2);
 			MiddleMove += (x, y) =>
 			{
 				firstPos.X += x;
@@ -58,33 +48,20 @@ namespace NetForm
 			for (int i = 0; i < layer.metas.Count; i++)
 			{
 				var item = layer.metas[i];
-
-				CreateButton(new Point(firstPos.X, firstPos.Y + i * VerticalInternal), item.Name, (o, e) =>
-				{
-					MessageBox.Show(item.Name);
-				});
-				if (item.Son != null)
-				{
-					DrawDesigner(item.Son);
-				}
-
+				CreateMeta(new Point(firstPos.X, firstPos.Y + i * VerticalInternal), item);
+		
 			}
 
 			//绘制当前layer 的增加按钮
 			CreateNewBtn = CreateButton(new Point(firstPos.X, firstPos.Y + (layer.metas.Count) * VerticalInternal), "新字段", (o, e) =>
 			{
-				var newbtn = new DesignerMeta()
+				var newMeta = new DesignerMeta()
 				{
 					Name = "New"
 				};
-				layer.metas.Add(newbtn);
+				layer.metas.Add(newMeta);
 				CreateNewBtn.Location = new Point(firstPos.X, firstPos.Y + (layer.metas.Count) * VerticalInternal);
-				CreateButton(new Point(firstPos.X, firstPos.Y + (layer.metas.Count - 1) * VerticalInternal), newbtn.Name, (o, e) =>
-				{
-					//Todo 
-				});
-
-
+				CreateMeta(new Point(firstPos.X, firstPos.Y + (layer.metas.Count - 1) * VerticalInternal), newMeta);
 			});
 		}
 
@@ -104,6 +81,15 @@ namespace NetForm
 			return button;
 		}
 
+		private Windows.DesignerMeta CreateMeta(Point point, DesignerMeta meta)
+		{
+			var metaPanel = new Windows.DesignerMeta(meta);
+			metaPanel.Location = point;
+			Controls.Add(metaPanel);
+			userControl.Add(metaPanel);
+			return metaPanel;
+		}
+
 		private void Button_Click(object? sender, EventArgs e)
 		{
 			MessageBox.Show($"按下按钮");
@@ -112,28 +98,6 @@ namespace NetForm
 		private void Designer_Load(object sender, EventArgs e)
 		{
 
-		}
-
-		private void Designer_KeyDown(object sender, KeyEventArgs e)
-		{
-
-		}
-
-		private void uiFlowLayoutPanel1_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void uiFlowLayoutPanel1_KeyDown(object sender, KeyEventArgs e)
-		{
-			switch (e.KeyCode)
-			{
-				case Keys.MButton:
-					MessageBox.Show("按下中键");
-					break;
-				default:
-					break;
-			}
 		}
 
 		private void Designer_KeyPress(object sender, KeyPressEventArgs e)
@@ -166,6 +130,12 @@ namespace NetForm
 					var curUI = uIControls[i];
 					curUI.Location = new Point(curUI.Location.X + dx, curUI.Location.Y + dy);
 				}
+				
+				for (int i = 0; i < userControl.Count; i++)
+				{
+					var curUI = userControl[i];
+					curUI.Location = new Point(curUI.Location.X + dx, curUI.Location.Y + dy);
+				}
 
 				if (MiddleMove != null)
 				{
@@ -185,15 +155,15 @@ namespace NetForm
 		private void toolStripButton3_Click(object sender, EventArgs e)
 		{
 			//保存测试
-			string name="";
-			if (UIInputDialog.InputStringDialog(this, ref name,desc:"表名"))
+			string name = "";
+			if (UIInputDialog.InputStringDialog(this, ref name, desc: "表名"))
 			{
-				designer.Name=name;
+				designer.Name = name;
 				LiteDbContext.Litedb.Designer.Update(designer);
 			}
-			
+
 			this.DialogResult = DialogResult.OK;
-			
+
 		}
 	}
 }

@@ -68,7 +68,6 @@
 			Name = "Designer";
 			Text = "Designer";
 			Load += Designer_Load;
-			KeyDown += Designer_KeyDown;
 			KeyPress += Designer_KeyPress;
 			MouseDown += Designer_MouseDown;
 			MouseMove += Designer_MouseMove;
