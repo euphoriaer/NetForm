@@ -49,7 +49,7 @@ namespace NetForm
 			{
 				var item = layer.metas[i];
 				CreateMeta(new Point(firstPos.X, firstPos.Y + i * VerticalInternal), item);
-		
+
 			}
 
 			//绘制当前layer 的增加按钮
@@ -130,7 +130,7 @@ namespace NetForm
 					var curUI = uIControls[i];
 					curUI.Location = new Point(curUI.Location.X + dx, curUI.Location.Y + dy);
 				}
-				
+
 				for (int i = 0; i < userControl.Count; i++)
 				{
 					var curUI = userControl[i];
@@ -154,16 +154,21 @@ namespace NetForm
 
 		private void toolStripButton3_Click(object sender, EventArgs e)
 		{
-			//保存测试
-			string name = "";
-			if (UIInputDialog.InputStringDialog(this, ref name, desc: "表名"))
+
+			if (designer.CustomerId!=null)
 			{
-				designer.Name = name;
 				LiteDbContext.Litedb.Designer.Update(designer);
 			}
-
+			else
+			{
+				string name = "";
+				if (UIInputDialog.InputStringDialog(this, ref name, desc: "表名"))
+				{
+					designer.Name = name;
+					LiteDbContext.Litedb.Designer.Update(designer);
+				}
+			}
 			this.DialogResult = DialogResult.OK;
-
 		}
 	}
 }

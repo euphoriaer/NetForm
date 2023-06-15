@@ -1,4 +1,5 @@
 ﻿using NetForm.Data;
+using NetForm.FileHelper;
 using NetForm.LiteDB;
 using System;
 using System.Collections.Generic;
@@ -41,24 +42,15 @@ namespace NetForm
 			{
 				FormList.Items.Add(des[i].Name);
 			}
+
+			DataTable dt =CSVHelper.ReadCSV("C:\\gitProject\\drgclient\\Csv\\1.7\\item\\item.CSV");
+
+			FormDataGrid.DataSource = dt;
 		}
 
 		private void CreateForm_Click(object sender, EventArgs e)
 		{
-			//构建一个根设计
-			Layer rootLayer = new Layer();
 
-			rootLayer.CreateDefaultMeta();
-
-			DesignerData data = new DesignerData(rootLayer);
-
-			var des = new Designer(data);
-
-			var res = des.ShowDialog();
-			if (res == DialogResult.OK)
-			{
-				FormList.Items.Add(des.designer.Name);
-			}
 		}
 
 		private void Main_KeyDown(object sender, KeyEventArgs e)
@@ -93,8 +85,31 @@ namespace NetForm
 			var designer = des[index];
 			var desWin = new Designer(designer);
 
-			var res= desWin.ShowDialog();
-			
+			var res = desWin.ShowDialog();
+
+		}
+
+		private void toolStripButton1_Click_1(object sender, EventArgs e)
+		{
+			//构建一个根设计
+			Layer rootLayer = new Layer();
+
+			rootLayer.CreateDefaultMeta();
+
+			DesignerData data = new DesignerData(rootLayer);
+
+			var des = new Designer(data);
+
+			var res = des.ShowDialog();
+			if (res == DialogResult.OK)
+			{
+				FormList.Items.Add(des.designer.Name);
+			}
+		}
+
+		private void FormDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
+
 		}
 	}
 }

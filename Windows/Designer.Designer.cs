@@ -59,13 +59,13 @@
 			// 
 			// Designer
 			// 
-			AutoScaleDimensions = new SizeF(7F, 17F);
-			AutoScaleMode = AutoScaleMode.Font;
-			AutoScroll = true;
-			AutoSize = true;
+			AutoScaleDimensions = new SizeF(96F, 96F);
+			AutoScaleMode = AutoScaleMode.Dpi;
 			ClientSize = new Size(1659, 854);
 			Controls.Add(toolStrip1);
 			Name = "Designer";
+			ShowIcon = false;
+			ShowInTaskbar = false;
 			Text = "Designer";
 			Load += Designer_Load;
 			KeyPress += Designer_KeyPress;
