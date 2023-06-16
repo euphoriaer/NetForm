@@ -43,9 +43,10 @@ namespace NetForm
 				FormList.Items.Add(des[i].Name);
 			}
 
-			DataTable dt =CSVHelper.ReadCSV("C:\\gitProject\\drgclient\\Csv\\1.7\\item\\item.CSV");
+			//DataTable dt = CSVHelper.ReadCSV("C:\\gitProject\\drgclient\\Csv\\1.7\\item\\item.CSV");
+			binGrid1.SetDataSource(des);
 
-			FormDataGrid.DataSource = dt;
+
 		}
 
 		private void CreateForm_Click(object sender, EventArgs e)

@@ -30,19 +30,13 @@
 		{
 			components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-			DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-			DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-			DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-			DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-			DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
 			mainToolStrip = new ToolStrip();
 			toolStripButton2 = new ToolStripButton();
 			toolStripButton1 = new ToolStripButton();
 			FormList = new Sunny.UI.UIListBox();
-			FormDataGrid = new Sunny.UI.UIDataGridView();
 			errorProvider1 = new ErrorProvider(components);
+			binGrid1 = new Windows.BinGrid();
 			mainToolStrip.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)FormDataGrid).BeginInit();
 			((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
 			SuspendLayout();
 			// 
@@ -96,64 +90,23 @@
 			FormList.TabIndex = 2;
 			FormList.Text = "uiListBox1";
 			// 
-			// FormDataGrid
-			// 
-			dataGridViewCellStyle1.BackColor = Color.FromArgb(235, 243, 255);
-			FormDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-			FormDataGrid.BackgroundColor = Color.White;
-			FormDataGrid.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-			dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle2.BackColor = Color.FromArgb(80, 160, 255);
-			dataGridViewCellStyle2.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			dataGridViewCellStyle2.ForeColor = Color.White;
-			dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-			dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-			FormDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-			FormDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle3.BackColor = SystemColors.Window;
-			dataGridViewCellStyle3.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
-			dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-			dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-			dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-			FormDataGrid.DefaultCellStyle = dataGridViewCellStyle3;
-			FormDataGrid.EnableHeadersVisualStyles = false;
-			FormDataGrid.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			FormDataGrid.GridColor = Color.FromArgb(80, 160, 255);
-			FormDataGrid.Location = new Point(340, 0);
-			FormDataGrid.Name = "FormDataGrid";
-			dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle4.BackColor = Color.FromArgb(235, 243, 255);
-			dataGridViewCellStyle4.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			dataGridViewCellStyle4.ForeColor = Color.FromArgb(48, 48, 48);
-			dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(80, 160, 255);
-			dataGridViewCellStyle4.SelectionForeColor = Color.White;
-			dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-			FormDataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-			dataGridViewCellStyle5.BackColor = Color.White;
-			dataGridViewCellStyle5.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			FormDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
-			FormDataGrid.RowTemplate.Height = 25;
-			FormDataGrid.ScrollBarRectColor = Color.FromArgb(80, 160, 255);
-			FormDataGrid.SelectedIndex = -1;
-			FormDataGrid.Size = new Size(1313, 937);
-			FormDataGrid.StripeOddColor = Color.FromArgb(235, 243, 255);
-			FormDataGrid.Style = Sunny.UI.UIStyle.Custom;
-			FormDataGrid.TabIndex = 3;
-			FormDataGrid.CellContentClick += FormDataGrid_CellContentClick;
-			// 
 			// errorProvider1
 			// 
 			errorProvider1.ContainerControl = this;
+			// 
+			// binGrid1
+			// 
+			binGrid1.Location = new Point(340, 12);
+			binGrid1.Name = "binGrid1";
+			binGrid1.Size = new Size(1348, 925);
+			binGrid1.TabIndex = 3;
 			// 
 			// Main
 			// 
 			AutoScaleDimensions = new SizeF(7F, 17F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(1700, 965);
-			Controls.Add(FormDataGrid);
+			Controls.Add(binGrid1);
 			Controls.Add(FormList);
 			Controls.Add(mainToolStrip);
 			Name = "Main";
@@ -163,7 +116,6 @@
 			MouseClick += Main_MouseClick;
 			mainToolStrip.ResumeLayout(false);
 			mainToolStrip.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)FormDataGrid).EndInit();
 			((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
 			ResumeLayout(false);
 			PerformLayout();
@@ -173,8 +125,8 @@
 		private ToolStripButton toolStripButton2;
 		public ToolStrip mainToolStrip;
 		private Sunny.UI.UIListBox FormList;
-		private Sunny.UI.UIDataGridView FormDataGrid;
 		private ToolStripButton toolStripButton1;
 		private ErrorProvider errorProvider1;
+		private Windows.BinGrid binGrid1;
 	}
 }
