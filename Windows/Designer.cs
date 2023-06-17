@@ -10,11 +10,11 @@ namespace NetForm
 	public partial class Designer : Form
 	{
 		public DesignerData designer;
-		public DesignerLayer root;
-		public Designer(DesignerData designerData)
+		public DesignerLayer layer;
+		public Designer(DesignerData designerData, DesignerLayer dataLayer)
 		{
 			designer = designerData;
-
+			layer = dataLayer;
 			InitializeComponent();
 			InitDesigner();
 		}
@@ -56,7 +56,7 @@ namespace NetForm
 			//绘制当前layer 的增加按钮
 			CreateNewBtn = CreateButton(new Point(firstPos.X, firstPos.Y + (layer.metas.Count) * VerticalInternal), "新字段", (o, e) =>
 			{
-				var newMeta = new DesignerMeta(root)
+				var newMeta = new DesignerMeta()
 				{
 					Name = "New"
 				};
@@ -84,8 +84,24 @@ namespace NetForm
 
 		private Windows.DesignerMeta CreateMeta(Point point, DesignerMeta meta)
 		{
-			var metaPanel = new Windows.DesignerMeta(meta);
+			var metaPanel = new Windows.DesignerMeta(meta);//todo 新层 layer ，点击修改Meta 数据
 			metaPanel.Location = point;
+			metaPanel.MainBtnClick += () =>
+			{
+				MessageBox.Show("todo 修改Meta数据");
+			};
+			metaPanel.ShowLayerClick += () =>
+			{
+				MessageBox.Show("todo 展示子层级面板");
+			};
+			metaPanel.DeleteLayerClick += () =>
+			{
+				MessageBox.Show("todo 删除子层");
+			};
+			metaPanel.NewLayerClick += () =>
+			{
+				MessageBox.Show("todo 增加子层");
+			};
 			Controls.Add(metaPanel);
 			userControl.Add(metaPanel);
 			return metaPanel;
@@ -156,20 +172,13 @@ namespace NetForm
 		private void toolStripButton3_Click(object sender, EventArgs e)
 		{
 
-			if (designer.CustomerId!=null)
-			{
-				LiteDbContext.Litedb.Designer.Update(designer);
-			}
-			else
-			{
-				string name = "";
-				if (UIInputDialog.InputStringDialog(this, ref name, desc: "表名"))
-				{
-					designer.Name = name;
-					LiteDbContext.Litedb.Designer.Update(designer);
-				}
-			}
+			LiteDbContext.Litedb.Designer.Update(designer);
 			this.DialogResult = DialogResult.OK;
+		}
+
+		private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+		{
+
 		}
 	}
 }

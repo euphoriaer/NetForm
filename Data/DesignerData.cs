@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace NetForm.Data
 {
@@ -14,9 +15,9 @@ namespace NetForm.Data
 		[BsonId]
 		public ObjectId CustomerId { get; set; }
 
-		public DataSet Data { get; set; }
+		public DataSet Data { get; set; }=new DataSet();
 
-		public string Name { get; set; }
+		public string Name { get; set; } = "";
 
 		public DesignerLayer Root { get; set; }
 
@@ -26,9 +27,13 @@ namespace NetForm.Data
 			
 		}
 
-		public void CreateLayer(string layerName)
+		public DesignerLayer CreateRootLayer(string layerName,string DesignerName)
 		{
-			DesignerLayer rootLayer = new DesignerLayer(this, layerName);
+			Data.DataSetName = DesignerName;
+			Name = DesignerName;
+			DesignerLayer Layer = new DesignerLayer(this, layerName);
+			Root = Layer;
+			return Layer;
 		}
 	}
 

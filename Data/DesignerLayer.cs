@@ -19,7 +19,7 @@ namespace NetForm.Data
 
 		private void CreateDefaultMeta(DesignerLayer rootLayer)
 		{
-			DesignerMeta root = new DesignerMeta(rootLayer)
+			DesignerMeta root = new DesignerMeta()
 			{
 				Name = "ID",
 				Description = "null",
@@ -35,6 +35,11 @@ namespace NetForm.Data
 			data.Data.Tables.Add(Data);
 			//创建默认元素
 			CreateDefaultMeta(this);
+		}
+
+		public DesignerLayer()
+		{
+			
 		}
 	}
 

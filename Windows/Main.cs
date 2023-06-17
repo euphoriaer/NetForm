@@ -1,6 +1,7 @@
 ﻿using NetForm.Data;
 using NetForm.FileHelper;
 using NetForm.LiteDB;
+using Sunny.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace NetForm
 {
@@ -83,8 +85,12 @@ namespace NetForm
 		{
 			var des = LiteDbContext.Litedb.Designer.GetDesigner();
 			var index = FormList.SelectedIndex;
+			if (index == -1)
+			{
+				return;
+			}
 			var designer = des[index];
-			var desWin = new Designer(designer);
+			var desWin = new Designer(designer, designer.Root);
 
 			var res = desWin.ShowDialog();
 
@@ -92,17 +98,23 @@ namespace NetForm
 
 		private void toolStripButton1_Click_1(object sender, EventArgs e)
 		{
-			//构建一个根设计
-			DesignerData data = new DesignerData();
-			data.CreateLayer("Root");
-		
-			var des = new Designer(data);
-
-			var res = des.ShowDialog();
-			if (res == DialogResult.OK)
+			string name = "";
+			if (UIInputDialog.InputStringDialog(this, ref name, desc: "表名"))
 			{
-				FormList.Items.Add(des.designer.Name);
+
+				//构建一个根设计
+				DesignerData data = new DesignerData();
+				var layer = data.CreateRootLayer("Root", name);
+				var des = new Designer(data, layer);
+
+				var res = des.ShowDialog();
+				if (res == DialogResult.OK)
+				{
+					FormList.Items.Add(des.designer.Name);
+				}
 			}
+
+			
 		}
 
 		private void FormDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)

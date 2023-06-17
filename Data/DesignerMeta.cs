@@ -8,10 +8,11 @@ namespace NetForm.Data
 {
 	public class DesignerMeta
 	{
-		public DesignerMeta(DesignerLayer father)
+		public DesignerMeta()
 		{
-			this.Parent = father;
+			
 		}
+
 		public string Name { get; set; }
 
 		public string Description { get; set; }
@@ -21,13 +22,6 @@ namespace NetForm.Data
 		public ValueType Type { get; set; }
 
 		public DesignerLayer Son { get; set; }
-
-		public DesignerLayer Parent { get; set; }
-
-		public void Delete()
-		{
-			Parent.metas.Remove(this);
-		}
 
 		public class Index
 		{

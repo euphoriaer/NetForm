@@ -23,7 +23,7 @@ namespace NetForm.Windows
 		public BinGrid(DesignerLayer layer)
 		{
 			InitializeComponent();
-			dataGridView1.DataSource = layer.Data;
+			//dataGridView1.DataSource = layer.;
 			//列类型根据Designer Meta
 		}
 

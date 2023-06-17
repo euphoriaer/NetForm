@@ -1,18 +1,12 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace NetForm.Windows
+﻿namespace NetForm.Windows
 {
 	public partial class DesignerMeta : UserControl
 	{
+		public Action DeleteLayerClick;
+		public Action MainBtnClick;
+		public Action NewLayerClick;
+		public Action ShowLayerClick;
+
 		public DesignerMeta()
 		{
 			InitializeComponent();
@@ -21,32 +15,53 @@ namespace NetForm.Windows
 		public DesignerMeta(NetForm.Data.DesignerMeta meta)
 		{
 			InitializeComponent();
-			mainBtn.Name= meta.Name;
-		}
-
-		private void foldBtn_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void newSon_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void DeleteSon_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void mainBtn_Click(object sender, EventArgs e)
-		{
-
+			mainBtn.Name = meta.Name;
+			mainBtn.Click += MainBtn_Click;
+			foldBtn.Click += FoldBtn_Click;
 		}
 
 		private void deleteBtn_Click(object sender, EventArgs e)
 		{
+			if (DeleteLayerClick != null)
+			{
+				DeleteLayerClick();
+			}
+		}
 
+		private void DeleteSon_Click(object sender, EventArgs e)
+		{
+		}
+
+		private void foldBtn_Click(object sender, EventArgs e)
+		{
+		}
+
+		private void FoldBtn_Click(object? sender, EventArgs e)
+		{
+			if (ShowLayerClick != null)
+			{
+				ShowLayerClick();
+			}
+		}
+
+		private void mainBtn_Click(object sender, EventArgs e)
+		{
+		}
+
+		private void MainBtn_Click(object? sender, EventArgs e)
+		{
+			if (MainBtnClick != null)
+			{
+				MainBtnClick();
+			}
+		}
+
+		private void newSon_Click(object sender, EventArgs e)
+		{
+			if (NewLayerClick != null)
+			{
+				NewLayerClick();
+			}
 		}
 	}
 }
