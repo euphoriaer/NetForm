@@ -10,7 +10,7 @@ namespace NetForm
 	public partial class Designer : Form
 	{
 		public DesignerData designer;
-		public Layer root;
+		public DesignerLayer root;
 		public Designer(DesignerData designerData)
 		{
 			designer = designerData;
@@ -29,11 +29,10 @@ namespace NetForm
 		public Action<int, int> MiddleMove;
 		private void InitDesigner()
 		{
-
 			DrawDesigner(designer.Root);
 		}
 
-		private void DrawDesigner(Layer layer)
+		private void DrawDesigner(DesignerLayer layer)
 		{
 			var original = new Point(Width / 2 - 50, Height / 2 - 17);
 			int Maxhight = layer.metas.Count * VerticalInternal;

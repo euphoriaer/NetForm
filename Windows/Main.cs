@@ -93,12 +93,9 @@ namespace NetForm
 		private void toolStripButton1_Click_1(object sender, EventArgs e)
 		{
 			//构建一个根设计
-			Layer rootLayer = new Layer();
-
-			rootLayer.CreateDefaultMeta(rootLayer);
-
-			DesignerData data = new DesignerData(rootLayer);
-
+			DesignerData data = new DesignerData();
+			data.CreateLayer("Root");
+		
 			var des = new Designer(data);
 
 			var res = des.ShowDialog();

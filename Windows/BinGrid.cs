@@ -20,7 +20,7 @@ namespace NetForm.Windows
 			InitializeComponent();
 		}
 
-		public BinGrid(Layer layer)
+		public BinGrid(DesignerLayer layer)
 		{
 			InitializeComponent();
 			dataGridView1.DataSource = layer.Data;
