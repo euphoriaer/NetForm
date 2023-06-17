@@ -10,9 +10,11 @@ namespace NetForm
 	public partial class Designer : Form
 	{
 		public DesignerData designer;
+		public Layer root;
 		public Designer(DesignerData designerData)
 		{
 			designer = designerData;
+
 			InitializeComponent();
 			InitDesigner();
 		}
@@ -55,7 +57,7 @@ namespace NetForm
 			//绘制当前layer 的增加按钮
 			CreateNewBtn = CreateButton(new Point(firstPos.X, firstPos.Y + (layer.metas.Count) * VerticalInternal), "新字段", (o, e) =>
 			{
-				var newMeta = new DesignerMeta()
+				var newMeta = new DesignerMeta(root)
 				{
 					Name = "New"
 				};

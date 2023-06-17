@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using NetForm.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,10 +20,11 @@ namespace NetForm.Windows
 			InitializeComponent();
 		}
 
-		public BinGrid(object dataSource)
+		public BinGrid(Layer layer)
 		{
 			InitializeComponent();
-			dataGridView1.DataSource = dataSource;
+			dataGridView1.DataSource = layer.Data;
+			//列类型根据Designer Meta
 		}
 
 		public void SetDataSource(object dataSource)
@@ -31,6 +33,11 @@ namespace NetForm.Windows
 		}
 
 		private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+		{
+
+		}
+
+		private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
 
 		}

@@ -95,7 +95,7 @@ namespace NetForm
 			//构建一个根设计
 			Layer rootLayer = new Layer();
 
-			rootLayer.CreateDefaultMeta();
+			rootLayer.CreateDefaultMeta(rootLayer);
 
 			DesignerData data = new DesignerData(rootLayer);
 
@@ -109,6 +109,11 @@ namespace NetForm
 		}
 
 		private void FormDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
+
+		}
+
+		private void binGrid1_Load(object sender, EventArgs e)
 		{
 
 		}

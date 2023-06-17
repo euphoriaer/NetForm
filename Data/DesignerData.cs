@@ -1,6 +1,7 @@
 ﻿using LiteDB;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +13,14 @@ namespace NetForm.Data
 		[BsonId]
 		public ObjectId CustomerId { get; set; }
 
+		public DataSet Data { get; set; }
+
 		public string Name { get; set; }
 
 		public Layer Root { get; set; }
 		public DesignerData(Layer root) 
 		{
+			Data.Tables.Add(root.Data);
 			Root = root;
 		}
 		public DesignerData()
@@ -31,9 +35,12 @@ namespace NetForm.Data
 
 		public List<DesignerMeta> metas  { get; set; }=new List<DesignerMeta>();
 
-		public void CreateDefaultMeta()
+		public DataTable Data { get; set; }
+
+		public void CreateDefaultMeta(Layer rootLayer)
 		{
-			DesignerMeta root = new DesignerMeta()
+			
+			DesignerMeta root = new DesignerMeta(rootLayer)
 			{
 				Name = "ID",
 				Description = "null",
@@ -46,6 +53,10 @@ namespace NetForm.Data
 
 	public class DesignerMeta
 	{
+		public DesignerMeta(Layer father)
+		{
+			this.Parent = father;
+		}
 		public string Name { get; set; }
 
 		public string Description { get; set; }
@@ -55,6 +66,13 @@ namespace NetForm.Data
 		public ValueType Type { get; set; }
 
 		public Layer Son { get; set; }
+
+		public Layer Parent { get; set; }
+
+		public void Delete()
+		{
+			Parent.metas.Remove(this);
+		}
 
 		public class Index
 		{

@@ -30,15 +30,15 @@
 		{
 			components = new System.ComponentModel.Container();
 			dataGridView1 = new DataGridView();
-			tableLayoutPanel1 = new TableLayoutPanel();
-			designerMetaBindingSource = new BindingSource(components);
 			nameDataGridViewTextBoxColumn = new DataGridViewButtonColumn();
 			descriptionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
 			typeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
 			sonDataGridViewTextBoxColumn = new DataGridViewComboBoxColumn();
+			designerMetaBindingSource = new BindingSource(components);
+			tableLayoutPanel1 = new TableLayoutPanel();
 			((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-			tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)designerMetaBindingSource).BeginInit();
+			tableLayoutPanel1.SuspendLayout();
 			SuspendLayout();
 			// 
 			// dataGridView1
@@ -53,26 +53,7 @@
 			dataGridView1.RowTemplate.Height = 25;
 			dataGridView1.Size = new Size(1280, 824);
 			dataGridView1.TabIndex = 0;
-			// 
-			// tableLayoutPanel1
-			// 
-			tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-			tableLayoutPanel1.ColumnCount = 1;
-			tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-			tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-			tableLayoutPanel1.Controls.Add(dataGridView1, 0, 1);
-			tableLayoutPanel1.Location = new Point(3, 3);
-			tableLayoutPanel1.Name = "tableLayoutPanel1";
-			tableLayoutPanel1.RowCount = 2;
-			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-			tableLayoutPanel1.Size = new Size(1286, 870);
-			tableLayoutPanel1.TabIndex = 1;
-			tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
-			// 
-			// designerMetaBindingSource
-			// 
-			designerMetaBindingSource.DataSource = typeof(Data.DesignerMeta);
+			dataGridView1.CellContentClick += dataGridView1_CellContentClick;
 			// 
 			// nameDataGridViewTextBoxColumn
 			// 
@@ -102,6 +83,26 @@
 			sonDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
 			sonDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.Automatic;
 			// 
+			// designerMetaBindingSource
+			// 
+			designerMetaBindingSource.DataSource = typeof(Data.DesignerMeta);
+			// 
+			// tableLayoutPanel1
+			// 
+			tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+			tableLayoutPanel1.ColumnCount = 1;
+			tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+			tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+			tableLayoutPanel1.Controls.Add(dataGridView1, 0, 1);
+			tableLayoutPanel1.Location = new Point(3, 3);
+			tableLayoutPanel1.Name = "tableLayoutPanel1";
+			tableLayoutPanel1.RowCount = 2;
+			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+			tableLayoutPanel1.Size = new Size(1286, 870);
+			tableLayoutPanel1.TabIndex = 1;
+			tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
+			// 
 			// BinGrid
 			// 
 			AutoScaleDimensions = new SizeF(7F, 17F);
@@ -110,8 +111,8 @@
 			Name = "BinGrid";
 			Size = new Size(1292, 876);
 			((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-			tableLayoutPanel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)designerMetaBindingSource).EndInit();
+			tableLayoutPanel1.ResumeLayout(false);
 			ResumeLayout(false);
 		}
 
