@@ -15,13 +15,10 @@ namespace NetForm.Data
 		[BsonId]
 		public ObjectId CustomerId { get; set; }
 
-		public DataSet Data { get; set; }=new DataSet();
-
 		public string Name { get; set; } = "";
 
 		public DesignerLayer Root { get; set; }
 
-		
 		public DesignerData()
 		{
 			
@@ -29,7 +26,7 @@ namespace NetForm.Data
 
 		public DesignerLayer CreateRootLayer(string layerName,string DesignerName)
 		{
-			Data.DataSetName = DesignerName;
+			
 			Name = DesignerName;
 			DesignerLayer Layer = new DesignerLayer(this, layerName);
 			Root = Layer;

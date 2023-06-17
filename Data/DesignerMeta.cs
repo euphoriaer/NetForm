@@ -15,7 +15,7 @@ namespace NetForm.Data
 
 		public string Name { get; set; }
 
-		public string Description { get; set; }
+		public string Description { get; set; } = "我是注释";
 		/// <summary>
 		/// 值 数组 字典  Index(目标表的id)
 		/// </summary>
