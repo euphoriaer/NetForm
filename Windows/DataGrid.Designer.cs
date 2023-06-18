@@ -28,13 +28,22 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			binGrid1 = new Windows.BinGrid();
 			SuspendLayout();
+			// 
+			// binGrid1
+			// 
+			binGrid1.Location = new Point(1, 1);
+			binGrid1.Name = "binGrid1";
+			binGrid1.Size = new Size(1093, 640);
+			binGrid1.TabIndex = 0;
 			// 
 			// DataGrid
 			// 
 			AutoScaleDimensions = new SizeF(7F, 17F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(800, 450);
+			ClientSize = new Size(1095, 674);
+			Controls.Add(binGrid1);
 			Name = "DataGrid";
 			Text = "DataGrid";
 			Load += DataGrid_Load;
@@ -42,5 +51,7 @@
 		}
 
 		#endregion
+
+		private Windows.BinGrid binGrid1;
 	}
 }

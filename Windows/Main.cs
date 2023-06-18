@@ -1,6 +1,8 @@
-﻿using NetForm.Data;
+﻿using Microsoft.Data.Sqlite;
+using NetForm.Data;
 using NetForm.FileHelper;
 using NetForm.LiteDB;
+using NetForm.SQLite;
 using Sunny.UI;
 using System;
 using System.Collections.Generic;
@@ -27,7 +29,7 @@ namespace NetForm
 
 		private void InitData()
 		{
-			//初始化数据库
+			//初始化LiteDb数据库
 			var path = Path.Combine(Environment.CurrentDirectory, "Data.db");
 			if (!File.Exists(path))
 			{
@@ -38,6 +40,17 @@ namespace NetForm
 			}
 			new LiteDbContext(path);
 
+			path = Path.Combine(Environment.CurrentDirectory, "Sqlite.db");
+			if (!File.Exists(path))
+			{
+				using (File.Create(path))
+				{
+
+				}
+			}
+			string connectStr = $"Data Source={path}";
+			var SQdb= new SQLiteContext(connectStr);
+			var db = SQdb.Dataset;
 			//FormList
 			var des = LiteDbContext.Litedb.Designer.GetDesigner();
 			for (int i = 0; i < des.Count; i++)
@@ -114,7 +127,7 @@ namespace NetForm
 				}
 			}
 
-			
+
 		}
 
 		private void FormDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
