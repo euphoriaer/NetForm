@@ -29,101 +29,142 @@
 		private void InitializeComponent()
 		{
 			components = new System.ComponentModel.Container();
-			dataGridView1 = new DataGridView();
-			nameDataGridViewTextBoxColumn = new DataGridViewButtonColumn();
-			descriptionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-			typeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-			sonDataGridViewTextBoxColumn = new DataGridViewComboBoxColumn();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BinGrid));
+			DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+			DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+			DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+			DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+			DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
 			designerMetaBindingSource = new BindingSource(components);
-			tableLayoutPanel1 = new TableLayoutPanel();
-			((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+			toolStrip1 = new ToolStrip();
+			toolStripButton1 = new ToolStripButton();
+			toolStripContainer1 = new ToolStripContainer();
+			uiDataGridView1 = new Sunny.UI.UIDataGridView();
 			((System.ComponentModel.ISupportInitialize)designerMetaBindingSource).BeginInit();
-			tableLayoutPanel1.SuspendLayout();
+			toolStrip1.SuspendLayout();
+			toolStripContainer1.ContentPanel.SuspendLayout();
+			toolStripContainer1.TopToolStripPanel.SuspendLayout();
+			toolStripContainer1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)uiDataGridView1).BeginInit();
 			SuspendLayout();
-			// 
-			// dataGridView1
-			// 
-			dataGridView1.AutoGenerateColumns = false;
-			dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			dataGridView1.Columns.AddRange(new DataGridViewColumn[] { nameDataGridViewTextBoxColumn, descriptionDataGridViewTextBoxColumn, typeDataGridViewTextBoxColumn, sonDataGridViewTextBoxColumn });
-			dataGridView1.DataSource = designerMetaBindingSource;
-			dataGridView1.Dock = DockStyle.Fill;
-			dataGridView1.Location = new Point(3, 43);
-			dataGridView1.Name = "dataGridView1";
-			dataGridView1.RowTemplate.Height = 25;
-			dataGridView1.Size = new Size(1280, 824);
-			dataGridView1.TabIndex = 0;
-			dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-			// 
-			// nameDataGridViewTextBoxColumn
-			// 
-			nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-			nameDataGridViewTextBoxColumn.HeaderText = "Name";
-			nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-			nameDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-			nameDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.Automatic;
-			// 
-			// descriptionDataGridViewTextBoxColumn
-			// 
-			descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
-			descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
-			descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-			// 
-			// typeDataGridViewTextBoxColumn
-			// 
-			typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
-			typeDataGridViewTextBoxColumn.HeaderText = "Type";
-			typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
-			// 
-			// sonDataGridViewTextBoxColumn
-			// 
-			sonDataGridViewTextBoxColumn.DataPropertyName = "Son";
-			sonDataGridViewTextBoxColumn.HeaderText = "Son";
-			sonDataGridViewTextBoxColumn.Name = "sonDataGridViewTextBoxColumn";
-			sonDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-			sonDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.Automatic;
 			// 
 			// designerMetaBindingSource
 			// 
 			designerMetaBindingSource.DataSource = typeof(Data.DesignerMeta);
 			// 
-			// tableLayoutPanel1
+			// toolStrip1
 			// 
-			tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-			tableLayoutPanel1.ColumnCount = 1;
-			tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-			tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-			tableLayoutPanel1.Controls.Add(dataGridView1, 0, 1);
-			tableLayoutPanel1.Location = new Point(3, 3);
-			tableLayoutPanel1.Name = "tableLayoutPanel1";
-			tableLayoutPanel1.RowCount = 2;
-			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-			tableLayoutPanel1.Size = new Size(1286, 870);
-			tableLayoutPanel1.TabIndex = 1;
-			tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
+			toolStrip1.Dock = DockStyle.None;
+			toolStrip1.ImageScalingSize = new Size(48, 48);
+			toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton1 });
+			toolStrip1.Location = new Point(9, 0);
+			toolStrip1.Name = "toolStrip1";
+			toolStrip1.Size = new Size(66, 25);
+			toolStrip1.TabIndex = 1;
+			toolStrip1.Text = "toolStrip1";
+			// 
+			// toolStripButton1
+			// 
+			toolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
+			toolStripButton1.ImageTransparentColor = Color.Magenta;
+			toolStripButton1.Name = "toolStripButton1";
+			toolStripButton1.Size = new Size(23, 22);
+			toolStripButton1.Text = "toolStripButton1";
+			toolStripButton1.Click += toolStripButton1_Click;
+			// 
+			// toolStripContainer1
+			// 
+			// 
+			// toolStripContainer1.ContentPanel
+			// 
+			toolStripContainer1.ContentPanel.AutoScroll = true;
+			toolStripContainer1.ContentPanel.Controls.Add(uiDataGridView1);
+			toolStripContainer1.ContentPanel.Size = new Size(1292, 826);
+			toolStripContainer1.Dock = DockStyle.Fill;
+			toolStripContainer1.Location = new Point(0, 0);
+			toolStripContainer1.Name = "toolStripContainer1";
+			toolStripContainer1.Size = new Size(1292, 876);
+			toolStripContainer1.TabIndex = 2;
+			toolStripContainer1.Text = "toolStripContainer1";
+			// 
+			// toolStripContainer1.TopToolStripPanel
+			// 
+			toolStripContainer1.TopToolStripPanel.Controls.Add(toolStrip1);
+			// 
+			// uiDataGridView1
+			// 
+			dataGridViewCellStyle1.BackColor = Color.FromArgb(235, 243, 255);
+			uiDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			uiDataGridView1.BackgroundColor = Color.White;
+			uiDataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+			dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle2.BackColor = Color.FromArgb(80, 160, 255);
+			dataGridViewCellStyle2.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			dataGridViewCellStyle2.ForeColor = Color.White;
+			dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+			uiDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+			uiDataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle3.BackColor = SystemColors.Window;
+			dataGridViewCellStyle3.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+			dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+			dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+			dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+			uiDataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+			uiDataGridView1.Dock = DockStyle.Fill;
+			uiDataGridView1.EnableHeadersVisualStyles = false;
+			uiDataGridView1.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			uiDataGridView1.GridColor = Color.FromArgb(80, 160, 255);
+			uiDataGridView1.Location = new Point(0, 0);
+			uiDataGridView1.Name = "uiDataGridView1";
+			dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle4.BackColor = Color.FromArgb(235, 243, 255);
+			dataGridViewCellStyle4.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			dataGridViewCellStyle4.ForeColor = Color.FromArgb(48, 48, 48);
+			dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(80, 160, 255);
+			dataGridViewCellStyle4.SelectionForeColor = Color.White;
+			dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+			uiDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle5.BackColor = Color.White;
+			dataGridViewCellStyle5.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			uiDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
+			uiDataGridView1.RowTemplate.Height = 25;
+			uiDataGridView1.ScrollBarRectColor = Color.FromArgb(80, 160, 255);
+			uiDataGridView1.SelectedIndex = -1;
+			uiDataGridView1.Size = new Size(1292, 826);
+			uiDataGridView1.StripeOddColor = Color.FromArgb(235, 243, 255);
+			uiDataGridView1.Style = Sunny.UI.UIStyle.Custom;
+			uiDataGridView1.TabIndex = 0;
+			uiDataGridView1.CellContentClick += uiDataGridView1_CellContentClick;
 			// 
 			// BinGrid
 			// 
 			AutoScaleDimensions = new SizeF(7F, 17F);
 			AutoScaleMode = AutoScaleMode.Font;
-			Controls.Add(tableLayoutPanel1);
+			Controls.Add(toolStripContainer1);
 			Name = "BinGrid";
 			Size = new Size(1292, 876);
-			((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
 			((System.ComponentModel.ISupportInitialize)designerMetaBindingSource).EndInit();
-			tableLayoutPanel1.ResumeLayout(false);
+			toolStrip1.ResumeLayout(false);
+			toolStrip1.PerformLayout();
+			toolStripContainer1.ContentPanel.ResumeLayout(false);
+			toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
+			toolStripContainer1.TopToolStripPanel.PerformLayout();
+			toolStripContainer1.ResumeLayout(false);
+			toolStripContainer1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)uiDataGridView1).EndInit();
 			ResumeLayout(false);
 		}
 
 		#endregion
-
-		private DataGridView dataGridView1;
-		private TableLayoutPanel tableLayoutPanel1;
-		private DataGridViewButtonColumn nameDataGridViewTextBoxColumn;
-		private DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
-		private DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
-		private DataGridViewComboBoxColumn sonDataGridViewTextBoxColumn;
 		private BindingSource designerMetaBindingSource;
+		private ToolStrip toolStrip1;
+		private ToolStripButton toolStripButton1;
+		private ToolStripContainer toolStripContainer1;
+		private Sunny.UI.UIDataGridView uiDataGridView1;
 	}
 }

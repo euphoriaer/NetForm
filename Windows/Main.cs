@@ -1,21 +1,9 @@
-﻿using Microsoft.Data.Sqlite;
-using NetForm.Data;
+﻿using NetForm.Data;
 using NetForm.FileHelper;
 using NetForm.LiteDB;
 using NetForm.SQLite;
 using Sunny.UI;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml.Linq;
+
 
 namespace NetForm
 {
@@ -30,7 +18,12 @@ namespace NetForm
 		private void InitData()
 		{
 			//初始化LiteDb数据库
-			var path = Path.Combine(Environment.CurrentDirectory, "Data.db");
+			var path = Path.Combine(Environment.CurrentDirectory, "Data", "Designer.litedb");
+			var folder = Path.GetDirectoryName(path);
+			if (!Directory.Exists(folder))
+			{
+				Directory.CreateDirectory(folder);
+			}
 			if (!File.Exists(path))
 			{
 				using (File.Create(path))
@@ -40,7 +33,7 @@ namespace NetForm
 			}
 			new LiteDbContext(path);
 
-			path = Path.Combine(Environment.CurrentDirectory, "Sqlite.db");
+			path = Path.Combine(Environment.CurrentDirectory, "Data", "Data.sqdb");
 			if (!File.Exists(path))
 			{
 				using (File.Create(path))
@@ -49,7 +42,7 @@ namespace NetForm
 				}
 			}
 			string connectStr = $"Data Source={path}";
-			var SQdb= new SQLiteContext(connectStr);
+			var SQdb = new SQLiteContext(connectStr);
 			var db = SQdb.Dataset;
 			//FormList
 			var des = LiteDbContext.Litedb.Designer.GetDesigner();
@@ -59,8 +52,8 @@ namespace NetForm
 			}
 
 			//DataTable dt = CSVHelper.ReadCSV("C:\\gitProject\\drgclient\\Csv\\1.7\\item\\item.CSV");
-			binGrid1.SetDataSource(des);
-
+			binGrid1.SetDataSource(db.Tables[0]);
+			//uiDataGridView1.DataSource = db.Tables[0];
 
 		}
 

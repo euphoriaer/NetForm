@@ -97,7 +97,7 @@
 			// binGrid1
 			// 
 			binGrid1.AutoSize = true;
-			binGrid1.Location = new Point(340, 12);
+			binGrid1.Location = new Point(340, 5);
 			binGrid1.Name = "binGrid1";
 			binGrid1.Size = new Size(1348, 925);
 			binGrid1.TabIndex = 3;

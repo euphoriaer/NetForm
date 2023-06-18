@@ -1,23 +1,17 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.Data.Sqlite;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
+using System.Data.SQLite;
 
 namespace NetForm.SQLite
 {
 	internal class SQLiteContext
 	{
-		public DataSet Dataset;
+		public DataSet Dataset=new DataSet();
 		public SQLiteContext(string connectString)
 		{
-			using (var connection = new SqlConnection(connectString))
+			using (var connection = new SQLiteConnection(connectString))
 			{
 				connection.Open();
-				SqlDataAdapter adapter = new SqlDataAdapter("show databases;",connection);
+				SQLiteDataAdapter adapter = new SQLiteDataAdapter("SELECT * FROM Test", connection);
 				adapter.Fill(Dataset);
 			}
 		}

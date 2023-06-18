@@ -29,7 +29,7 @@ namespace NetForm.Windows
 
 		public void SetDataSource(object dataSource)
 		{
-			dataGridView1.DataSource = dataSource;
+			uiDataGridView1.DataSource = dataSource;
 		}
 
 		private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -38,6 +38,16 @@ namespace NetForm.Windows
 		}
 
 		private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
+
+		}
+
+		private void toolStripButton1_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void uiDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
 
 		}
