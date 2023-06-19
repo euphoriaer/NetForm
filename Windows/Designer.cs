@@ -174,6 +174,8 @@ namespace NetForm
 			//当前层设置数据
 			layer.SetTableColumn();
 			LiteDbContext.Litedb.Designer.Update(designer);
+			//创建新表 
+
 			this.DialogResult = DialogResult.OK;
 		}
 

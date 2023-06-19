@@ -42,8 +42,7 @@ namespace NetForm
 				}
 			}
 			string connectStr = $"Data Source={path}";
-			var SQdb = new SQLiteContext(connectStr);
-			var db = SQdb.Dataset;
+			var db = new SQLiteContext(connectStr);
 			//FormList
 			var des = LiteDbContext.Litedb.Designer.GetDesigner();
 			for (int i = 0; i < des.Count; i++)
@@ -52,7 +51,7 @@ namespace NetForm
 			}
 
 			//DataTable dt = CSVHelper.ReadCSV("C:\\gitProject\\drgclient\\Csv\\1.7\\item\\item.CSV");
-			binGrid1.SetDataSource(db.Tables[0]);
+			binGrid1.SetDataSource(db.Datas);
 			//uiDataGridView1.DataSource = db.Tables[0];
 
 		}
