@@ -29,17 +29,17 @@
 		private void InitializeComponent()
 		{
 			components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BinGrid));
 			DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
 			DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
 			DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
 			DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
 			DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BinGrid));
 			designerMetaBindingSource = new BindingSource(components);
 			toolStrip1 = new ToolStrip();
-			toolStripButton1 = new ToolStripButton();
 			toolStripContainer1 = new ToolStripContainer();
 			uiDataGridView1 = new Sunny.UI.UIDataGridView();
+			toolStripButton2 = new ToolStripButton();
 			((System.ComponentModel.ISupportInitialize)designerMetaBindingSource).BeginInit();
 			toolStrip1.SuspendLayout();
 			toolStripContainer1.ContentPanel.SuspendLayout();
@@ -56,22 +56,12 @@
 			// 
 			toolStrip1.Dock = DockStyle.None;
 			toolStrip1.ImageScalingSize = new Size(48, 48);
-			toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton1 });
+			toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton2 });
 			toolStrip1.Location = new Point(9, 0);
 			toolStrip1.Name = "toolStrip1";
-			toolStrip1.Size = new Size(66, 25);
+			toolStrip1.Size = new Size(95, 55);
 			toolStrip1.TabIndex = 1;
 			toolStrip1.Text = "toolStrip1";
-			// 
-			// toolStripButton1
-			// 
-			toolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
-			toolStripButton1.ImageTransparentColor = Color.Magenta;
-			toolStripButton1.Name = "toolStripButton1";
-			toolStripButton1.Size = new Size(23, 22);
-			toolStripButton1.Text = "toolStripButton1";
-			toolStripButton1.Click += toolStripButton1_Click;
 			// 
 			// toolStripContainer1
 			// 
@@ -80,7 +70,7 @@
 			// 
 			toolStripContainer1.ContentPanel.AutoScroll = true;
 			toolStripContainer1.ContentPanel.Controls.Add(uiDataGridView1);
-			toolStripContainer1.ContentPanel.Size = new Size(1292, 826);
+			toolStripContainer1.ContentPanel.Size = new Size(1292, 821);
 			toolStripContainer1.Dock = DockStyle.Fill;
 			toolStripContainer1.Location = new Point(0, 0);
 			toolStripContainer1.Name = "toolStripContainer1";
@@ -135,11 +125,20 @@
 			uiDataGridView1.RowTemplate.Height = 25;
 			uiDataGridView1.ScrollBarRectColor = Color.FromArgb(80, 160, 255);
 			uiDataGridView1.SelectedIndex = -1;
-			uiDataGridView1.Size = new Size(1292, 826);
+			uiDataGridView1.Size = new Size(1292, 821);
 			uiDataGridView1.StripeOddColor = Color.FromArgb(235, 243, 255);
 			uiDataGridView1.Style = Sunny.UI.UIStyle.Custom;
 			uiDataGridView1.TabIndex = 0;
 			uiDataGridView1.CellContentClick += uiDataGridView1_CellContentClick;
+			// 
+			// toolStripButton2
+			// 
+			toolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			toolStripButton2.Image = (Image)resources.GetObject("toolStripButton2.Image");
+			toolStripButton2.ImageTransparentColor = Color.Magenta;
+			toolStripButton2.Name = "toolStripButton2";
+			toolStripButton2.Size = new Size(52, 52);
+			toolStripButton2.Text = "toolStripButton2";
 			// 
 			// BinGrid
 			// 
@@ -163,8 +162,8 @@
 		#endregion
 		private BindingSource designerMetaBindingSource;
 		private ToolStrip toolStrip1;
-		private ToolStripButton toolStripButton1;
 		private ToolStripContainer toolStripContainer1;
 		private Sunny.UI.UIDataGridView uiDataGridView1;
+		private ToolStripButton toolStripButton2;
 	}
 }

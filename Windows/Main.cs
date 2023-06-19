@@ -1,7 +1,6 @@
-﻿using NetForm.Data;
-using NetForm.FileHelper;
+﻿using LiteDB;
+using NetForm.Data;
 using NetForm.LiteDB;
-using NetForm.SQLite;
 using Sunny.UI;
 
 
@@ -32,7 +31,22 @@ namespace NetForm
 				}
 			}
 			new LiteDbContext(path);
-
+			BsonDocument bson=new BsonDocument();
+			BsonArray bsonArray = new BsonArray();
+			BsonValue bsonValue = new BsonValue(false);
+			BsonValue bsonValue2 = new BsonValue(15);
+			BsonValue bsonValue3 = new BsonValue("Test");
+			BsonValue bsonValue4 = new BsonValue(15.54f);
+			var type = bsonValue4.GetType();
+			var type2 = bsonValue4.Type;
+			bsonArray.Add(bsonValue);
+			bsonArray.Add(bsonValue2);
+			bsonArray.Add(bsonValue3);
+			bsonArray.Add(bsonValue4);
+			bson.Add("Test", bsonArray);
+			var s = bson["Test"];
+			var t = bson.GetType();
+			var t1 = bson.Type;
 			path = Path.Combine(Environment.CurrentDirectory, "Data", "Data.sqdb");
 			if (!File.Exists(path))
 			{
@@ -42,7 +56,7 @@ namespace NetForm
 				}
 			}
 			string connectStr = $"Data Source={path}";
-			var db = new SQLiteContext(connectStr);
+		
 			//FormList
 			var des = LiteDbContext.Litedb.Designer.GetDesigner();
 			for (int i = 0; i < des.Count; i++)
@@ -51,7 +65,7 @@ namespace NetForm
 			}
 
 			//DataTable dt = CSVHelper.ReadCSV("C:\\gitProject\\drgclient\\Csv\\1.7\\item\\item.CSV");
-			binGrid1.SetDataSource(db.Datas);
+			//binGrid1.SetDataSource(db.Datas);
 			//uiDataGridView1.DataSource = db.Tables[0];
 
 		}

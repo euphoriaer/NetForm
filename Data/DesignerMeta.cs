@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiteDB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace NetForm.Data
 {
+	/// <summary>
+	/// 一个Meta 是一列数据
+	/// </summary>
 	public class DesignerMeta
 	{
 		public DesignerMeta()
@@ -16,6 +20,9 @@ namespace NetForm.Data
 		public string Name { get; set; }
 
 		public string Description { get; set; } = "我是注释";
+
+		public BsonDocument Data;
+
 		/// <summary>
 		/// 值 数组 字典  Index(目标表的id)
 		/// </summary>
