@@ -3,7 +3,8 @@ using NetForm.Data;
 using Sunny.UI;
 using System.Diagnostics;
 using NetForm.LiteDB;
-
+using NetForm.Windows;
+using DesignerMeta = NetForm.Data.DesignerMeta;
 
 namespace NetForm
 {
@@ -88,7 +89,7 @@ namespace NetForm
 			metaPanel.Location = point;
 			metaPanel.MainBtnClick += () =>
 			{
-				MessageBox.Show("todo 修改Meta数据");
+				
 			};
 			metaPanel.ShowLayerClick += () =>
 			{

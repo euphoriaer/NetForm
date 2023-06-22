@@ -6,7 +6,7 @@
 		public Action MainBtnClick;
 		public Action NewLayerClick;
 		public Action ShowLayerClick;
-
+		public Data.DesignerMeta meta;
 		public DesignerMeta()
 		{
 			InitializeComponent();
@@ -15,7 +15,8 @@
 		public DesignerMeta(NetForm.Data.DesignerMeta meta)
 		{
 			InitializeComponent();
-			mainBtn.Name = meta.Name;
+			this.meta = meta;
+			mainBtn.Text = meta.Name;
 			mainBtn.Click += MainBtn_Click;
 			foldBtn.Click += FoldBtn_Click;
 		}
@@ -46,6 +47,13 @@
 
 		private void mainBtn_Click(object sender, EventArgs e)
 		{
+			MetaType metaType = new MetaType(meta);
+			metaType.ShowDialog();
+			if (metaType.DialogResult == DialogResult.OK)
+			{
+				mainBtn.Text = meta.Name;
+				MessageBox.Show($"{meta.Name}");
+			}
 		}
 
 		private void MainBtn_Click(object? sender, EventArgs e)

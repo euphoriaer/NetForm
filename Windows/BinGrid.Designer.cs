@@ -29,17 +29,17 @@
 		private void InitializeComponent()
 		{
 			components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BinGrid));
 			DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
 			DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
 			DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
 			DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
 			DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BinGrid));
 			designerMetaBindingSource = new BindingSource(components);
 			toolStrip1 = new ToolStrip();
+			toolStripButton2 = new ToolStripButton();
 			toolStripContainer1 = new ToolStripContainer();
 			uiDataGridView1 = new Sunny.UI.UIDataGridView();
-			toolStripButton2 = new ToolStripButton();
 			((System.ComponentModel.ISupportInitialize)designerMetaBindingSource).BeginInit();
 			toolStrip1.SuspendLayout();
 			toolStripContainer1.ContentPanel.SuspendLayout();
@@ -59,9 +59,18 @@
 			toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton2 });
 			toolStrip1.Location = new Point(9, 0);
 			toolStrip1.Name = "toolStrip1";
-			toolStrip1.Size = new Size(95, 55);
+			toolStrip1.Size = new Size(64, 55);
 			toolStrip1.TabIndex = 1;
 			toolStrip1.Text = "toolStrip1";
+			// 
+			// toolStripButton2
+			// 
+			toolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			toolStripButton2.Image = (Image)resources.GetObject("toolStripButton2.Image");
+			toolStripButton2.ImageTransparentColor = Color.Magenta;
+			toolStripButton2.Name = "toolStripButton2";
+			toolStripButton2.Size = new Size(52, 52);
+			toolStripButton2.Text = "toolStripButton2";
 			// 
 			// toolStripContainer1
 			// 
@@ -81,6 +90,7 @@
 			// toolStripContainer1.TopToolStripPanel
 			// 
 			toolStripContainer1.TopToolStripPanel.Controls.Add(toolStrip1);
+			toolStripContainer1.TopToolStripPanel.Click += toolStripContainer1_TopToolStripPanel_Click;
 			// 
 			// uiDataGridView1
 			// 
@@ -130,15 +140,6 @@
 			uiDataGridView1.Style = Sunny.UI.UIStyle.Custom;
 			uiDataGridView1.TabIndex = 0;
 			uiDataGridView1.CellContentClick += uiDataGridView1_CellContentClick;
-			// 
-			// toolStripButton2
-			// 
-			toolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			toolStripButton2.Image = (Image)resources.GetObject("toolStripButton2.Image");
-			toolStripButton2.ImageTransparentColor = Color.Magenta;
-			toolStripButton2.Name = "toolStripButton2";
-			toolStripButton2.Size = new Size(52, 52);
-			toolStripButton2.Text = "toolStripButton2";
 			// 
 			// BinGrid
 			// 

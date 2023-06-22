@@ -51,5 +51,10 @@ namespace NetForm.Windows
 		{
 
 		}
+
+		private void toolStripContainer1_TopToolStripPanel_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
