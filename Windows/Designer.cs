@@ -5,6 +5,8 @@ using System.Diagnostics;
 using NetForm.LiteDB;
 using NetForm.Windows;
 using DesignerMeta = NetForm.Data.DesignerMeta;
+using UserControl = NetForm.Windows.DesignerMeta;
+using System.Windows.Controls;
 
 namespace NetForm
 {
@@ -22,36 +24,46 @@ namespace NetForm
 		private List<UIControl> uIControls = new List<UIControl>();
 		private List<UserControl> userControl = new List<UserControl>();
 
-		public int HorizontalInternal = 20;
+		public int HorizontalInternal =200;
 		public int VerticalInternal = 80;
+		public Point BasePos;
 		/// <summary>
 		/// dx,dy
 		/// </summary>
 		public Action<int, int> MiddleMove;
 		private void InitDesigner()
 		{
+			BasePos = new Point(Width / 2 - 50, Height / 2 - 17);
+			MiddleMove += (x, y) =>
+			{
+				BasePos.X += x;
+				BasePos.Y += y;
+			};
 			DrawDesigner(designer.Root);
 		}
 
 		private void DrawDesigner(DesignerLayer layer)
 		{
-			var original = new Point(Width / 2 - 50, Height / 2 - 17);
+			var original = BasePos;
 			int Maxhight = layer.metas.Count * VerticalInternal;
 			int width = layer.Level * HorizontalInternal;
-
+			
 			var firstPos = new Point(original.X + width, original.Y + -Maxhight / 2);
+			
 			MiddleMove += (x, y) =>
 			{
+				//todo 判断是否选中层，选中层可拖拽
 				firstPos.X += x;
 				firstPos.Y += y;
+				
 			};
 
 			var CreateNewBtn = new UIButton();
 			for (int i = 0; i < layer.metas.Count; i++)
 			{
 				var item = layer.metas[i];
-				CreateMeta(new Point(firstPos.X, firstPos.Y + i * VerticalInternal), item);
-
+				var btn=CreateMeta(new Point(firstPos.X, firstPos.Y + i * VerticalInternal), item, layer);
+				
 			}
 
 			//绘制当前layer 的增加按钮
@@ -63,7 +75,7 @@ namespace NetForm
 				};
 				layer.metas.Add(newMeta);
 				CreateNewBtn.Location = new Point(firstPos.X, firstPos.Y + (layer.metas.Count) * VerticalInternal);
-				CreateMeta(new Point(firstPos.X, firstPos.Y + (layer.metas.Count - 1) * VerticalInternal), newMeta);
+				CreateMeta(new Point(firstPos.X, firstPos.Y + (layer.metas.Count - 1) * VerticalInternal), newMeta, layer);
 			});
 		}
 
@@ -83,7 +95,7 @@ namespace NetForm
 			return button;
 		}
 
-		private Windows.DesignerMeta CreateMeta(Point point, DesignerMeta meta)
+		private Windows.DesignerMeta CreateMeta(Point point, DesignerMeta meta,DesignerLayer metaLayer)
 		{
 			var metaPanel = new Windows.DesignerMeta(meta);//todo 新层 layer ，点击修改Meta 数据
 			metaPanel.Location = point;
@@ -101,8 +113,16 @@ namespace NetForm
 			};
 			metaPanel.NewLayerClick += () =>
 			{
-				MessageBox.Show("todo 增加子层");
+				DesignerLayer layer = new DesignerLayer();
+				layer.Level = metaLayer.Level + 1;
+				layer.Name = "New Layer";
+				meta.Son = layer;
+				DrawDesigner(layer);
 			};
+			if (meta.Son != null)
+			{
+				DrawDesigner(meta.Son);
+			}
 			Controls.Add(metaPanel);
 			userControl.Add(metaPanel);
 			return metaPanel;

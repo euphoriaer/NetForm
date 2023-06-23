@@ -13,7 +13,7 @@ namespace NetForm.Data
 {
 	public class DesignerLayer
 	{
-		public int Level = 0;
+		public int Level { get; set; }=0;
 
 		public string Name { get; set; }
 
