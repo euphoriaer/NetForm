@@ -192,8 +192,6 @@ namespace NetForm
 
 		private void toolStripButton3_Click(object sender, EventArgs e)
 		{
-			//当前层设置数据
-			layer.SetTableColumn();
 			LiteDbContext.Litedb.Designer.Update(designer);
 			//创建新表 
 

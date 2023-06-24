@@ -15,21 +15,24 @@ namespace NetForm.Windows
 	public partial class BinGrid : UserControl
 	{
 
+		private DataTable dbTable;
+
 		public BinGrid()
 		{
 			InitializeComponent();
+			uiDataGridView1.AllowDrop = true;
 		}
 
 		public BinGrid(DesignerLayer layer)
 		{
 			InitializeComponent();
-			//dataGridView1.DataSource = layer.;
-			//列类型根据Designer Meta
+			uiDataGridView1.AllowDrop = true;
+			layer.SetGridView(uiDataGridView1);
 		}
 
-		public void SetDataSource(object dataSource)
+		public void SetDataSource(DesignerLayer layer)
 		{
-			uiDataGridView1.DataSource = dataSource;
+			layer.SetGridView(uiDataGridView1);
 		}
 
 		private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -54,7 +57,12 @@ namespace NetForm.Windows
 
 		private void toolStripContainer1_TopToolStripPanel_Click(object sender, EventArgs e)
 		{
+			var table = uiDataGridView1.DataSource as DataTable;
+		}
 
+		private void toolStripButton2_Click(object sender, EventArgs e)
+		{
+			var table=uiDataGridView1.DataSource as DataTable;
 		}
 	}
 }

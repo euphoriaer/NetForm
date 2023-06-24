@@ -1,13 +1,10 @@
 ﻿using LiteDB;
 using NetForm.FileHelper;
-using System;
-using System.Collections.Generic;
+using Sunny.UI;
 using System.Data;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Common;
+using System.Windows.Controls;
+using DataGridView = Sunny.UI.UIDataGridView;
 
 namespace NetForm.Data
 {
@@ -36,44 +33,78 @@ namespace NetForm.Data
 
 		public List<DesignerMeta> metas { get; set; } = new List<DesignerMeta>();
 
-		//public DataTable Data { get; set; } =new DataTable();
-		public void SetTableColumn()
+		/// <summary>
+		/// 展示列
+		/// </summary>
+		/// <returns></returns>
+		public void SetGridView(UIDataGridView gridView)
 		{
-			DataTable temptable = new DataTable();
+			gridView.Columns.Clear();
 			foreach (DesignerMeta meta in metas)
 			{
-				DataColumn column = new DataColumn();
 				switch (meta.Type)
 				{
 					case DesignerMeta.ValueType.Int:
-						column.DataType = typeof(int);
+						var columnInt = new DataGridViewColumn();
+						columnInt.ValueType = typeof(int);
+						columnInt.Name = meta.Name;
+						columnInt.ReadOnly = false;
+						columnInt.HeaderText = meta.Name;
+						columnInt.CellTemplate = new DataGridViewTextBoxCell();
+						columnInt.ToolTipText = meta.Description;
+						gridView.Columns.Add(columnInt);
 						break;
 					case DesignerMeta.ValueType.Float:
-						column.DataType = typeof(float);
+						var columnFloat = new DataGridViewColumn();
+						columnFloat.ValueType = typeof(float);
+						columnFloat.Name = meta.Name;
+						columnFloat.ReadOnly = false;
+						columnFloat.HeaderText = meta.Name;
+						columnFloat.CellTemplate = new DataGridViewTextBoxCell();
+						columnFloat.ToolTipText = meta.Description;
+						gridView.Columns.Add(columnFloat);
 						break;
 					case DesignerMeta.ValueType.String:
-						column.DataType = typeof(string);
+						var columnString = new DataGridViewColumn();
+						columnString.ValueType = typeof(string);
+						columnString.Name = meta.Name;
+						columnString.ReadOnly = false;
+						columnString.HeaderText = meta.Name;
+						columnString.ToolTipText = meta.Description;
+						columnString.CellTemplate = new DataGridViewTextBoxCell();
+						gridView.Columns.Add(columnString);
 						break;
 					case DesignerMeta.ValueType.Index:
-						//下拉
-						column.DataType = typeof(int);
+						var columnIndex = new DataGridViewColumn();
+						//todo 下拉/弹出 选ID 输入检测
+						columnIndex.ValueType = typeof(int);
+						columnIndex.Name = meta.Name;
+						columnIndex.ReadOnly = false;
+						columnIndex.HeaderText = meta.Name;
+						columnIndex.CellTemplate = new DataGridViewTextBoxCell();
+						columnIndex.ToolTipText = meta.Description;
+						gridView.Columns.Add(columnIndex);
 						break;
 					case DesignerMeta.ValueType.Bool:
-						column.DataType = typeof(bool);
+						var columnBool= new DataGridViewCheckBoxColumn();
+						columnBool.ValueType = typeof(bool);
+						columnBool.Name = meta.Name;
+						columnBool.ReadOnly = false;
+						columnBool.HeaderText = meta.Name;
+						columnBool.CellTemplate = new DataGridViewCheckBoxCell();
+						columnBool.ToolTipText = meta.Description;
+						columnBool.TrueValue = "1";
+						columnBool.FalseValue = "0";
+						gridView.Columns.Add(columnBool);
 						break;
 					default:
 						break;
 				}
-				column.ColumnName = meta.Name;
-				column.ReadOnly = false;
-				//todo 非数组layer 唯一
-				column.Unique = false;
-				//注释
-				column.Caption = meta.Description;
-				column.AutoIncrement = true;
-				temptable.Columns.Add(column);
+				
 			}
-			table = temptable;
+			
+			//todo 填充Bsondocument 数据到 DataTable,
+			var table= gridView.DataSource as DataTable;
 		}
 
 		private void CreateDefaultMeta(DesignerLayer rootLayer)

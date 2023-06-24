@@ -63,11 +63,15 @@ namespace NetForm
 			{
 				FormList.Items.Add(des[i].Name);
 			}
+			FormList.DoubleClick += FormList_DoubleClick;
+			
+		}
 
-			//DataTable dt = CSVHelper.ReadCSV("C:\\gitProject\\drgclient\\Csv\\1.7\\item\\item.CSV");
-			//binGrid1.SetDataSource(db.Datas);
-			//uiDataGridView1.DataSource = db.Tables[0];
-
+		private void FormList_DoubleClick(object? sender, EventArgs e)
+		{
+			var des = LiteDbContext.Litedb.Designer.GetDesigner();
+			var layer = des[FormList.SelectedIndex];
+			binGrid1.SetDataSource(layer.Root);
 		}
 
 		private void CreateForm_Click(object sender, EventArgs e)
