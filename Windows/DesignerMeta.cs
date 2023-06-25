@@ -52,7 +52,6 @@
 			if (metaType.DialogResult == DialogResult.OK)
 			{
 				mainBtn.Text = meta.Name;
-				MessageBox.Show($"{meta.Name}");
 			}
 		}
 

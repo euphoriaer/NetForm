@@ -31,22 +31,6 @@ namespace NetForm
 				}
 			}
 			new LiteDbContext(path);
-			BsonDocument bson=new BsonDocument();
-			BsonArray bsonArray = new BsonArray();
-			BsonValue bsonValue = new BsonValue(false);
-			BsonValue bsonValue2 = new BsonValue(15);
-			BsonValue bsonValue3 = new BsonValue("Test");
-			BsonValue bsonValue4 = new BsonValue(15.54f);
-			var type = bsonValue4.GetType();
-			var type2 = bsonValue4.Type;
-			bsonArray.Add(bsonValue);
-			bsonArray.Add(bsonValue2);
-			bsonArray.Add(bsonValue3);
-			bsonArray.Add(bsonValue4);
-			bson.Add("Test", bsonArray);
-			var s = bson["Test"];
-			var t = bson.GetType();
-			var t1 = bson.Type;
 			path = Path.Combine(Environment.CurrentDirectory, "Data", "Data.sqdb");
 			if (!File.Exists(path))
 			{
@@ -70,8 +54,9 @@ namespace NetForm
 		private void FormList_DoubleClick(object? sender, EventArgs e)
 		{
 			var des = LiteDbContext.Litedb.Designer.GetDesigner();
-			var layer = des[FormList.SelectedIndex];
-			binGrid1.SetDataSource(layer.Root);
+			var data = des[FormList.SelectedIndex];
+			var layer = data.Root;
+			binGrid1.SetDataSource(ref layer,ref data);
 		}
 
 		private void CreateForm_Click(object sender, EventArgs e)

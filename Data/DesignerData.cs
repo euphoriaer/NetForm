@@ -1,4 +1,6 @@
 ﻿using LiteDB;
+using NetForm.LiteDB;
+using NetForm.Windows;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -31,6 +33,11 @@ namespace NetForm.Data
 			DesignerLayer Layer = new DesignerLayer(this, layerName);
 			Root = Layer;
 			return Layer;
+		}
+
+		internal void SaveToLiteDB()
+		{
+			var success=LiteDbContext.Litedb.Designer.Update(this);
 		}
 	}
 

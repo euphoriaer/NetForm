@@ -192,7 +192,8 @@ namespace NetForm
 
 		private void toolStripButton3_Click(object sender, EventArgs e)
 		{
-			LiteDbContext.Litedb.Designer.Update(designer);
+			designer.SaveToLiteDB();
+			
 			//创建新表 
 
 			this.DialogResult = DialogResult.OK;

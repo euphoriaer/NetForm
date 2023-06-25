@@ -21,7 +21,7 @@ namespace NetForm.Data
 
 		public string Description { get; set; } = "我是注释";
 
-		public BsonDocument Data;
+		public BsonDocument Data { get; set; }
 
 		/// <summary>
 		/// 值 数组 字典  Index(目标表的id)

@@ -3,6 +3,8 @@ using NetForm.FileHelper;
 using Sunny.UI;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Windows.Controls;
 using DataGridView = Sunny.UI.UIDataGridView;
 
@@ -10,24 +12,24 @@ namespace NetForm.Data
 {
 	public class DesignerLayer
 	{
-		public int Level { get; set; }=0;
+		public int Level { get; set; } = 0;
 
 		public string Name { get; set; }
 
-		[BsonIgnore]
-		public DataTable table
-		{
-			get
-			{
-				var table= CSVHelper.StringToTable(DataTableString);
-				return table;
-			}
-			set
-			{
-				var tb = value;
-				DataTableString=CSVHelper.DataTableToString(tb);
-			}
-		}
+		//[BsonIgnore]
+		//public DataTable table
+		//{
+		//	get
+		//	{
+		//		var table = CSVHelper.StringToTable(DataTableString);
+		//		return table;
+		//	}
+		//	set
+		//	{
+		//		var tb = value;
+		//		DataTableString = CSVHelper.DataTableToString(tb);
+		//	}
+		//}
 
 		public string DataTableString { get; set; }
 
@@ -39,9 +41,12 @@ namespace NetForm.Data
 		/// <returns></returns>
 		public void SetGridView(UIDataGridView gridView)
 		{
+			gridView.DataError += GridView_DataError;
 			gridView.Columns.Clear();
-			foreach (DesignerMeta meta in metas)
+			var count = metas.Count;
+			for (int col = 0; col < count; col++)
 			{
+				DesignerMeta meta= metas[col];
 				switch (meta.Type)
 				{
 					case DesignerMeta.ValueType.Int:
@@ -56,7 +61,7 @@ namespace NetForm.Data
 						break;
 					case DesignerMeta.ValueType.Float:
 						var columnFloat = new DataGridViewColumn();
-						columnFloat.ValueType = typeof(float);
+						columnFloat.ValueType = typeof(double);
 						columnFloat.Name = meta.Name;
 						columnFloat.ReadOnly = false;
 						columnFloat.HeaderText = meta.Name;
@@ -86,25 +91,114 @@ namespace NetForm.Data
 						gridView.Columns.Add(columnIndex);
 						break;
 					case DesignerMeta.ValueType.Bool:
-						var columnBool= new DataGridViewCheckBoxColumn();
+						var columnBool = new DataGridViewCheckBoxColumn();
 						columnBool.ValueType = typeof(bool);
 						columnBool.Name = meta.Name;
 						columnBool.ReadOnly = false;
 						columnBool.HeaderText = meta.Name;
 						columnBool.CellTemplate = new DataGridViewCheckBoxCell();
 						columnBool.ToolTipText = meta.Description;
-						columnBool.TrueValue = "1";
-						columnBool.FalseValue = "0";
+						columnBool.TrueValue = true;
+						columnBool.FalseValue = false;
 						gridView.Columns.Add(columnBool);
 						break;
 					default:
 						break;
 				}
-				
+
+				//填充Bsondocument 数据到 gridView
+				if (meta.Data == null)
+				{
+					continue;
+				}
+				var bson =meta.Data;
+				var dataArray = bson[meta.Name].AsArray;
+				while(gridView.Rows.Count< dataArray.Count)
+				{
+					gridView.Rows.Add();
+				}
+				for (int row = 0; row < dataArray.Count; row++)
+				{
+					var value = dataArray[row];
+					switch (value.Type)
+					{
+						case BsonType.MinValue:
+							break;
+						case BsonType.Null:
+							break;
+						case BsonType.Int32:
+							gridView.Rows[row].Cells[col].Value = value.AsInt32;
+							break;
+						case BsonType.Int64:
+							break;
+						case BsonType.Double:
+							gridView.Rows[row].Cells[col].Value = value.AsDouble;
+							break;
+						case BsonType.Decimal:
+							break;
+						case BsonType.String:
+							gridView.Rows[row].Cells[col].Value = value.AsString;
+							break;
+						case BsonType.Document:
+							break;
+						case BsonType.Array:
+							break;
+						case BsonType.Binary:
+							break;
+						case BsonType.ObjectId:
+							break;
+						case BsonType.Guid:
+							break;
+						case BsonType.Boolean:
+							gridView.Rows[row].Cells[col].Value = value.AsBoolean;
+							break;
+						case BsonType.DateTime:
+							break;
+						case BsonType.MaxValue:
+							break;
+						default:
+							break;
+					}
+					
+				}
 			}
-			
-			//todo 填充Bsondocument 数据到 DataTable,
-			var table= gridView.DataSource as DataTable;
+		}
+
+		private void GridView_DataError(object? sender, DataGridViewDataErrorEventArgs e)
+		{
+			MessageBox.Show("输入类型错误!");
+		}
+
+		public void SaveData(UIDataGridView dataGrid)
+		{
+			//按列存储
+			var colIndex = dataGrid.Columns.Count;
+
+			for (int col = 0; col < colIndex; col++)
+			{
+				var curCol = dataGrid.Columns[col];
+				var cellIndex = dataGrid.RowCount;
+				//每一列
+				BsonArray bson = new BsonArray();
+				for (int row = 0; row < cellIndex; row++)
+				{
+					var dataType = curCol.ValueType;
+					var cell = dataGrid.Rows[row]?.Cells[col].Value;
+					if (cell == null&&
+						!string.IsNullOrEmpty(cell.ToString()))
+					{
+						bson.Add(null);
+						continue;
+					}
+					BsonValue value = new BsonValue(cell);
+					Debug.WriteLine($"BsonType {value.Type}");
+					bson.Add(value);
+				}
+				var curMeta = metas[col];
+				BsonDocument bsonData = new BsonDocument();
+				bsonData.Add(curCol.Name, bson);
+				curMeta.Data = bsonData;
+			}
 		}
 
 		private void CreateDefaultMeta(DesignerLayer rootLayer)

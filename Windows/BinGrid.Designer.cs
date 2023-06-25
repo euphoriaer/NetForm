@@ -59,18 +59,19 @@
 			toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton2 });
 			toolStrip1.Location = new Point(9, 0);
 			toolStrip1.Name = "toolStrip1";
-			toolStrip1.Size = new Size(95, 55);
+			toolStrip1.Size = new Size(95, 72);
 			toolStrip1.TabIndex = 1;
 			toolStrip1.Text = "toolStrip1";
 			// 
 			// toolStripButton2
 			// 
-			toolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Image;
 			toolStripButton2.Image = (Image)resources.GetObject("toolStripButton2.Image");
 			toolStripButton2.ImageTransparentColor = Color.Magenta;
 			toolStripButton2.Name = "toolStripButton2";
-			toolStripButton2.Size = new Size(52, 52);
-			toolStripButton2.Text = "toolStripButton2";
+			toolStripButton2.Size = new Size(52, 69);
+			toolStripButton2.Text = "保存";
+			toolStripButton2.TextImageRelation = TextImageRelation.ImageAboveText;
+			toolStripButton2.ToolTipText = "保存";
 			toolStripButton2.Click += toolStripButton2_Click;
 			// 
 			// toolStripContainer1
@@ -80,7 +81,7 @@
 			// 
 			toolStripContainer1.ContentPanel.AutoScroll = true;
 			toolStripContainer1.ContentPanel.Controls.Add(uiDataGridView1);
-			toolStripContainer1.ContentPanel.Size = new Size(1292, 821);
+			toolStripContainer1.ContentPanel.Size = new Size(1292, 804);
 			toolStripContainer1.Dock = DockStyle.Fill;
 			toolStripContainer1.Location = new Point(0, 0);
 			toolStripContainer1.Name = "toolStripContainer1";
@@ -136,7 +137,7 @@
 			uiDataGridView1.RowTemplate.Height = 25;
 			uiDataGridView1.ScrollBarRectColor = Color.FromArgb(80, 160, 255);
 			uiDataGridView1.SelectedIndex = -1;
-			uiDataGridView1.Size = new Size(1292, 821);
+			uiDataGridView1.Size = new Size(1292, 804);
 			uiDataGridView1.StripeOddColor = Color.FromArgb(235, 243, 255);
 			uiDataGridView1.Style = Sunny.UI.UIStyle.Custom;
 			uiDataGridView1.TabIndex = 0;
