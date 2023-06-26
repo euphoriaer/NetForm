@@ -36,12 +36,12 @@ namespace NetForm.Data
 		public List<DesignerMeta> metas { get; set; } = new List<DesignerMeta>();
 
 		/// <summary>
-		/// 展示列
+		/// 展示Layer数据
 		/// </summary>
 		/// <returns></returns>
 		public void SetGridView(UIDataGridView gridView)
 		{
-			gridView.DataError += GridView_DataError;
+			
 			gridView.Columns.Clear();
 			var count = metas.Count;
 			for (int col = 0; col < count; col++)
@@ -162,11 +162,6 @@ namespace NetForm.Data
 					
 				}
 			}
-		}
-
-		private void GridView_DataError(object? sender, DataGridViewDataErrorEventArgs e)
-		{
-			MessageBox.Show("输入类型错误!");
 		}
 
 		public void SaveData(UIDataGridView dataGrid)

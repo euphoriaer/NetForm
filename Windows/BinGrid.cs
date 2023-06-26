@@ -21,6 +21,7 @@ namespace NetForm.Windows
 		{
 			InitializeComponent();
 			uiDataGridView1.AllowDrop = true;
+			uiDataGridView1.DataError += GridView_DataError;
 		}
 
 		public BinGrid(ref DesignerLayer layer,ref DesignerData data)
@@ -29,7 +30,17 @@ namespace NetForm.Windows
 			designerData= data;
 			uiDataGridView1.AllowDrop = true;
 			curLayer=layer;
+			uiDataGridView1.DataError += GridView_DataError;
 			layer.SetGridView(uiDataGridView1);
+		}
+
+		private void GridView_DataError(object? sender, DataGridViewDataErrorEventArgs e)
+		{
+			var index = e.ColumnIndex;
+			var dataGridView= sender as DataGridView;
+			var col = dataGridView.Columns[index];
+			var type= col.ValueType.Name;
+			MessageBox.Show($"输入类型错误! 请输入正确类型: {type}");
 		}
 
 		public void SetDataSource(ref DesignerLayer layer,ref DesignerData data)
