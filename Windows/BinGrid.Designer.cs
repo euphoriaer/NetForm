@@ -8,7 +8,7 @@
 		private System.ComponentModel.IContainer components = null;
 
 		/// <summary> 
-		/// 清理所有正在使用的资源。
+		/// 清理所有正在使用的资源。  
 		/// </summary>
 		/// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
 		protected override void Dispose(bool disposing)
@@ -30,16 +30,18 @@
 		{
 			components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BinGrid));
-			DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-			DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-			DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-			DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-			DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+			DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+			DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+			DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+			DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+			DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
 			designerMetaBindingSource = new BindingSource(components);
 			toolStrip1 = new ToolStrip();
 			toolStripButton2 = new ToolStripButton();
 			toolStripContainer1 = new ToolStripContainer();
 			uiDataGridView1 = new Sunny.UI.UIDataGridView();
+			contextMenu = new ContextMenuStrip(components);
+			InputExcel = new ToolStripButton();
 			((System.ComponentModel.ISupportInitialize)designerMetaBindingSource).BeginInit();
 			toolStrip1.SuspendLayout();
 			toolStripContainer1.ContentPanel.SuspendLayout();
@@ -56,10 +58,10 @@
 			// 
 			toolStrip1.Dock = DockStyle.None;
 			toolStrip1.ImageScalingSize = new Size(48, 48);
-			toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton2 });
+			toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton2, InputExcel });
 			toolStrip1.Location = new Point(9, 0);
 			toolStrip1.Name = "toolStrip1";
-			toolStrip1.Size = new Size(95, 72);
+			toolStrip1.Size = new Size(160, 72);
 			toolStrip1.TabIndex = 1;
 			toolStrip1.Text = "toolStrip1";
 			// 
@@ -96,44 +98,45 @@
 			// 
 			// uiDataGridView1
 			// 
-			dataGridViewCellStyle1.BackColor = Color.FromArgb(235, 243, 255);
-			uiDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			uiDataGridView1.AllowDrop = true;
+			dataGridViewCellStyle6.BackColor = Color.FromArgb(235, 243, 255);
+			uiDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
 			uiDataGridView1.BackgroundColor = Color.White;
 			uiDataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-			dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle2.BackColor = Color.FromArgb(80, 160, 255);
-			dataGridViewCellStyle2.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			dataGridViewCellStyle2.ForeColor = Color.White;
-			dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-			dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-			uiDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle7.BackColor = Color.FromArgb(80, 160, 255);
+			dataGridViewCellStyle7.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			dataGridViewCellStyle7.ForeColor = Color.White;
+			dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+			dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+			dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+			uiDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
 			uiDataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle3.BackColor = SystemColors.Window;
-			dataGridViewCellStyle3.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
-			dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-			dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-			dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-			uiDataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle8.BackColor = SystemColors.Window;
+			dataGridViewCellStyle8.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
+			dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+			dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+			dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+			uiDataGridView1.DefaultCellStyle = dataGridViewCellStyle8;
 			uiDataGridView1.Dock = DockStyle.Fill;
 			uiDataGridView1.EnableHeadersVisualStyles = false;
 			uiDataGridView1.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
 			uiDataGridView1.GridColor = Color.FromArgb(80, 160, 255);
 			uiDataGridView1.Location = new Point(0, 0);
 			uiDataGridView1.Name = "uiDataGridView1";
-			dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle4.BackColor = Color.FromArgb(235, 243, 255);
-			dataGridViewCellStyle4.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			dataGridViewCellStyle4.ForeColor = Color.FromArgb(48, 48, 48);
-			dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(80, 160, 255);
-			dataGridViewCellStyle4.SelectionForeColor = Color.White;
-			dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-			uiDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-			dataGridViewCellStyle5.BackColor = Color.White;
-			dataGridViewCellStyle5.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			uiDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
+			dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle9.BackColor = Color.FromArgb(235, 243, 255);
+			dataGridViewCellStyle9.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			dataGridViewCellStyle9.ForeColor = Color.FromArgb(48, 48, 48);
+			dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(80, 160, 255);
+			dataGridViewCellStyle9.SelectionForeColor = Color.White;
+			dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+			uiDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+			dataGridViewCellStyle10.BackColor = Color.White;
+			dataGridViewCellStyle10.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			uiDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle10;
 			uiDataGridView1.RowTemplate.Height = 25;
 			uiDataGridView1.ScrollBarRectColor = Color.FromArgb(80, 160, 255);
 			uiDataGridView1.SelectedIndex = -1;
@@ -142,6 +145,21 @@
 			uiDataGridView1.Style = Sunny.UI.UIStyle.Custom;
 			uiDataGridView1.TabIndex = 0;
 			uiDataGridView1.CellContentClick += uiDataGridView1_CellContentClick;
+			// 
+			// contextMenu
+			// 
+			contextMenu.Name = "contextMenu";
+			contextMenu.Size = new Size(61, 4);
+			// 
+			// InputExcel
+			// 
+			InputExcel.Image = (Image)resources.GetObject("InputExcel.Image");
+			InputExcel.ImageTransparentColor = Color.Magenta;
+			InputExcel.Name = "InputExcel";
+			InputExcel.Size = new Size(65, 69);
+			InputExcel.Text = "导入Excel";
+			InputExcel.TextImageRelation = TextImageRelation.ImageAboveText;
+			InputExcel.Click += InputExcel_Click;
 			// 
 			// BinGrid
 			// 
@@ -168,5 +186,7 @@
 		private ToolStripContainer toolStripContainer1;
 		private Sunny.UI.UIDataGridView uiDataGridView1;
 		private ToolStripButton toolStripButton2;
+		private ContextMenuStrip contextMenu;
+		private ToolStripButton InputExcel;
 	}
 }
