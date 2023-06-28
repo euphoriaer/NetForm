@@ -1,15 +1,20 @@
 ﻿using Microsoft.Win32;
 using NetForm.Data;
+using NetForm.Tools;
 using OfficeOpenXml;
+using Sunny.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LicenseContext = OfficeOpenXml.LicenseContext;
 
 namespace NetForm.Windows
 {
@@ -46,19 +51,41 @@ namespace NetForm.Windows
 		{
 			string path = ((Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString(); ;
 			//todo 读Excel 到Grid
-
+			ExcelToGrid(path);
 		}
 
 		public void ExcelToGrid(string excelPath)
 		{
+			ExcelPackage.LicenseContext = LicenseContext.Commercial;
 			using (var excelPackage = new ExcelPackage(excelPath))
 			{
 				var sheet = excelPackage.Workbook.Worksheets[0];
-				//遍历cell,符合条件导入
-				var col = sheet.Columns[0];
-				col.GetType();
+				//遍历cell,符合条件的导入
 
 				var colIndex = uiDataGridView1.Columns.Count;
+
+				var sheetRowsCount = sheet.Rows.Count();
+				for (int col = 0; col < colIndex; col++)
+				{
+					var gridCol = uiDataGridView1.Columns[col];
+					var sheetCol = sheet.Columns[col+1];
+					var sheetType= sheetCol.GetType();
+					var gridType= gridCol.GetType();
+					for (int row = 0; row < sheetRowsCount; row++)
+					{
+						var sheetCellValue= sheet.Cells[row+1,col+1].Value;
+						try
+						{
+							var gridCell = uiDataGridView1.Rows[row].Cells[col].Value = sheetCellValue;
+						}
+						catch (Exception)
+						{
+
+							MessageBox.Show($"类型错误 {col}列");//Todo  定义 Bool
+							continue;
+						}
+					}
+				}
 			}
 		}
 
@@ -121,7 +148,29 @@ namespace NetForm.Windows
 
 		private void InputExcel_Click(object sender, EventArgs e)
 		{
+			
+		}
 
+		private void 常用路径ToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			//todo 常用导出路径设定
+		}
+
+		private void ExportExcel_ButtonClick(object sender, EventArgs e)
+		{
+
+		}
+
+		private void toolStripButton1_Click_1(object sender, EventArgs e)
+		{
+			var filePath = DialogTools.OpenFiles(out bool isOK, "Excel(*.xlsx)|*.xlsx");
+
+			if (!isOK)
+			{
+				return;
+			}
+
+			ExcelToGrid(filePath[0]);
 		}
 	}
 }
