@@ -79,6 +79,7 @@ namespace NetForm.Windows
 						var sheetCellValue = sheet.Cells[row + 1, col + 1].Value;
 						try
 						{
+							//todo 定义true false 1 ,0 前4行存储Grid信息
 							var gridCell = uiDataGridView1.Rows[row].Cells[col].Value = sheetCellValue;
 						}
 						catch (Exception)

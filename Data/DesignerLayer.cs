@@ -1,5 +1,6 @@
 ﻿using LiteDB;
 using NetForm.FileHelper;
+using NetForm.Tools;
 using Sunny.UI;
 using System.Data;
 using System.Data.Common;
@@ -41,12 +42,12 @@ namespace NetForm.Data
 		/// <returns></returns>
 		public void SetGridView(UIDataGridView gridView)
 		{
-			
+
 			gridView.Columns.Clear();
 			var count = metas.Count;
 			for (int col = 0; col < count; col++)
 			{
-				DesignerMeta meta= metas[col];
+				DesignerMeta meta = metas[col];
 				switch (meta.Type)
 				{
 					case DesignerMeta.ValueType.Int:
@@ -111,9 +112,9 @@ namespace NetForm.Data
 				{
 					continue;
 				}
-				var bson =meta.Data;
+				var bson = meta.Data;
 				var dataArray = bson[meta.Name].AsArray;
-				while(gridView.Rows.Count< dataArray.Count)
+				while (gridView.Rows.Count < dataArray.Count)
 				{
 					gridView.Rows.Add();
 				}
@@ -159,7 +160,7 @@ namespace NetForm.Data
 						default:
 							break;
 					}
-					
+
 				}
 			}
 		}
@@ -168,7 +169,7 @@ namespace NetForm.Data
 		{
 			//按列存储
 			var colIndex = dataGrid.Columns.Count;
-			
+
 			for (int col = 0; col < colIndex; col++)
 			{
 				var curCol = dataGrid.Columns[col];
@@ -179,8 +180,16 @@ namespace NetForm.Data
 				{
 					try
 					{
-						var dataType = curCol.ValueType;
+
 						var cell = dataGrid.Rows[row]?.Cells[col].Value;
+						var colMetaType = metas[col].Type;
+						bool suitableType = cell.IsMetaType(colMetaType);
+						if (!suitableType)
+						{
+							bson.Add(null);
+							MessageBox.Show($"数据格式错误 行{row} 列{col}");
+							continue;
+						}
 						if (cell == null ||
 							string.IsNullOrEmpty(cell.ToString()))
 						{
@@ -196,7 +205,7 @@ namespace NetForm.Data
 						MessageBox.Show($"数据格式错误 行{row} 列{col}");
 						break;
 					}
-				
+
 				}
 				var curMeta = metas[col];
 				BsonDocument bsonData = new BsonDocument();
