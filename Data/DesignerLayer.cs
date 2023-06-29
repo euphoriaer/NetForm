@@ -168,7 +168,7 @@ namespace NetForm.Data
 		{
 			//按列存储
 			var colIndex = dataGrid.Columns.Count;
-
+			
 			for (int col = 0; col < colIndex; col++)
 			{
 				var curCol = dataGrid.Columns[col];
@@ -177,17 +177,26 @@ namespace NetForm.Data
 				BsonArray bson = new BsonArray();
 				for (int row = 0; row < cellIndex; row++)
 				{
-					var dataType = curCol.ValueType;
-					var cell = dataGrid.Rows[row]?.Cells[col].Value;
-					if (cell == null&&
-						!string.IsNullOrEmpty(cell.ToString()))
+					try
 					{
-						bson.Add(null);
-						continue;
+						var dataType = curCol.ValueType;
+						var cell = dataGrid.Rows[row]?.Cells[col].Value;
+						if (cell == null ||
+							string.IsNullOrEmpty(cell.ToString()))
+						{
+							bson.Add(null);
+							continue;
+						}
+						BsonValue value = new BsonValue(cell);
+						Debug.WriteLine($"BsonType {value.Type}");
+						bson.Add(value);
 					}
-					BsonValue value = new BsonValue(cell);
-					Debug.WriteLine($"BsonType {value.Type}");
-					bson.Add(value);
+					catch (Exception)
+					{
+						MessageBox.Show($"数据格式错误 行{row} 列{col}");
+						break;
+					}
+				
 				}
 				var curMeta = metas[col];
 				BsonDocument bsonData = new BsonDocument();

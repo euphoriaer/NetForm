@@ -1,19 +1,9 @@
-﻿using Microsoft.Win32;
-using NetForm.Data;
+﻿using NetForm.Data;
 using NetForm.Tools;
 using OfficeOpenXml;
-using Sunny.UI;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.IO.Packaging;
+using System.Runtime.CompilerServices;
 using LicenseContext = OfficeOpenXml.LicenseContext;
 
 namespace NetForm.Windows
@@ -31,6 +21,7 @@ namespace NetForm.Windows
 			uiDataGridView1.DragEnter += UiDataGridView1_DragEnter;
 			uiDataGridView1.DragDrop += UiDataGridView1_DragDrop;
 		}
+		
 
 		private void UiDataGridView1_DragEnter(object? sender, DragEventArgs e)
 		{
@@ -56,24 +47,36 @@ namespace NetForm.Windows
 
 		public void ExcelToGrid(string excelPath)
 		{
-			ExcelPackage.LicenseContext = LicenseContext.Commercial;
+			if (curLayer==null)
+			{
+				MessageBox.Show("未选择表");
+				return;
+			}
+			ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 			using (var excelPackage = new ExcelPackage(excelPath))
 			{
-				var sheet = excelPackage.Workbook.Worksheets[0];
+				ExcelWorksheet sheet = excelPackage.Workbook.Worksheets[0];
 				//遍历cell,符合条件的导入
-
+				
+				int sheetRowsCount = sheet.GetRealRowCount();
+			
 				var colIndex = uiDataGridView1.Columns.Count;
+				
+				while (uiDataGridView1.Rows.Count < sheetRowsCount)
+				{
+					uiDataGridView1.Rows.Add();
+				}
 
-				var sheetRowsCount = sheet.Rows.Count();
+
 				for (int col = 0; col < colIndex; col++)
 				{
 					var gridCol = uiDataGridView1.Columns[col];
-					var sheetCol = sheet.Columns[col+1];
-					var sheetType= sheetCol.GetType();
-					var gridType= gridCol.GetType();
+					var sheetCol = sheet.Columns[col + 1];
+					var sheetType = sheetCol.GetType();
+					var gridType = gridCol.GetType();
 					for (int row = 0; row < sheetRowsCount; row++)
 					{
-						var sheetCellValue= sheet.Cells[row+1,col+1].Value;
+						var sheetCellValue = sheet.Cells[row + 1, col + 1].Value;
 						try
 						{
 							var gridCell = uiDataGridView1.Rows[row].Cells[col].Value = sheetCellValue;
@@ -148,7 +151,7 @@ namespace NetForm.Windows
 
 		private void InputExcel_Click(object sender, EventArgs e)
 		{
-			
+
 		}
 
 		private void 常用路径ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -172,5 +175,6 @@ namespace NetForm.Windows
 
 			ExcelToGrid(filePath[0]);
 		}
+		
 	}
 }
