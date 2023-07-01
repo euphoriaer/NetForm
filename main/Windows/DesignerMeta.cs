@@ -12,7 +12,7 @@
 			InitializeComponent();
 		}
 
-		public DesignerMeta(NetForm.Data.DesignerMeta meta)
+		public DesignerMeta(Data.DesignerMeta meta)
 		{
 			InitializeComponent();
 			this.meta = meta;

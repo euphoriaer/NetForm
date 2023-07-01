@@ -1,12 +1,10 @@
 ﻿using LiteDB;
-using NetForm.Data;
 using Sunny.UI;
 using System.Diagnostics;
-using NetForm.LiteDB;
-using NetForm.Windows;
-using DesignerMeta = NetForm.Data.DesignerMeta;
+using DesignerMeta = Data;
 using UserControl = NetForm.Windows.DesignerMeta;
 using System.Windows.Controls;
+using Data;
 
 namespace NetForm
 {
@@ -69,7 +67,7 @@ namespace NetForm
 			//绘制当前layer 的增加按钮
 			CreateNewBtn = CreateButton(new Point(firstPos.X, firstPos.Y + (layer.metas.Count) * VerticalInternal), "新字段", (o, e) =>
 			{
-				var newMeta = new DesignerMeta()
+				var newMeta = new Data.DesignerMeta()
 				{
 					Name = "New"
 				};
@@ -95,7 +93,7 @@ namespace NetForm
 			return button;
 		}
 
-		private Windows.DesignerMeta CreateMeta(Point point, DesignerMeta meta,DesignerLayer metaLayer)
+		private Windows.DesignerMeta CreateMeta(Point point, Data.DesignerMeta meta,DesignerLayer metaLayer)
 		{
 			var metaPanel = new Windows.DesignerMeta(meta);//todo 新层 layer ，点击修改Meta 数据
 			metaPanel.Location = point;

@@ -1,48 +1,20 @@
 ﻿using LiteDB;
-using NetForm.FileHelper;
-using NetForm.Tools;
 using Sunny.UI;
-using System.Data;
-using System.Data.Common;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Windows.Controls;
-using DataGridView = Sunny.UI.UIDataGridView;
+using NetForm.Tools;
+using Data;
 
-namespace NetForm.Data
+namespace NetForm.Extension
 {
-	public class DesignerLayer
+	internal static class DataExtension
 	{
-		public int Level { get; set; } = 0;
-
-		public string Name { get; set; }
-
-		//[BsonIgnore]
-		//public DataTable table
-		//{
-		//	get
-		//	{
-		//		var table = CSVHelper.StringToTable(DataTableString);
-		//		return table;
-		//	}
-		//	set
-		//	{
-		//		var tb = value;
-		//		DataTableString = CSVHelper.DataTableToString(tb);
-		//	}
-		//}
-
-		public string DataTableString { get; set; }
-
-		public List<DesignerMeta> metas { get; set; } = new List<DesignerMeta>();
-
 		/// <summary>
 		/// 展示Layer数据
 		/// </summary>
 		/// <returns></returns>
-		public void SetGridView(UIDataGridView gridView)
+		public static void SetGridView(this DesignerLayer Layer,UIDataGridView gridView)
 		{
-
+			var metas= Layer.metas;
 			gridView.Columns.Clear();
 			var count = metas.Count;
 			for (int col = 0; col < count; col++)
@@ -165,11 +137,11 @@ namespace NetForm.Data
 			}
 		}
 
-		public void SaveData(UIDataGridView dataGrid)
+		public static void SaveData(this DesignerLayer Layer,UIDataGridView dataGrid)
 		{
 			//按列存储
 			var colIndex = dataGrid.Columns.Count;
-
+			var metas = Layer.metas;
 			for (int col = 0; col < colIndex; col++)
 			{
 				var curCol = dataGrid.Columns[col];
@@ -213,31 +185,5 @@ namespace NetForm.Data
 				curMeta.Data = bsonData;
 			}
 		}
-
-		private void CreateDefaultMeta(DesignerLayer rootLayer)
-		{
-			DesignerMeta root = new DesignerMeta()
-			{
-				Name = "ID",
-				Description = "null",
-
-			};
-			metas.Add(root);
-		}
-
-		public DesignerLayer(DesignerData data, string layerName)
-		{
-			Name = layerName;
-			//Data.TableName = layerName;
-			//创建默认元素
-			CreateDefaultMeta(this);
-		}
-
-		public DesignerLayer()
-		{
-
-		}
 	}
-
-
 }

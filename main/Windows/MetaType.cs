@@ -1,4 +1,4 @@
-﻿using NetForm.Data;
+﻿using Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,13 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DesignerMeta = NetForm.Data.DesignerMeta;
+using DesignerMeta = Data.DesignerMeta;
 
 namespace NetForm.Windows
 {
 	public partial class MetaType : Form
 	{
-		public NetForm.Data.DesignerMeta meta;
+		public Data.DesignerMeta meta;
 		public MetaType()
 		{
 			InitializeComponent();
@@ -27,16 +27,16 @@ namespace NetForm.Windows
 
 			uiComboBoxType.Items.AddRange(new object[]
 					{
-						$"{NetForm.Data.DesignerMeta.ValueType.Int}",
-						$"{NetForm.Data.DesignerMeta.ValueType.Float}",
-						$"{NetForm.Data.DesignerMeta.ValueType.String}",
-						$"{NetForm.Data.DesignerMeta.ValueType.Index}",
-						$"{NetForm.Data.DesignerMeta.ValueType.Bool}"});
+						$"{Data.DesignerMeta.ValueType.Int}",
+						$"{Data.DesignerMeta.ValueType.Float}",
+						$"{Data.DesignerMeta.ValueType.String}",
+						$"{Data.DesignerMeta.ValueType.Index}",
+						$"{Data.DesignerMeta.ValueType.Bool}"});
 
 			uiTextBoxName.Text = meta.Name;
 			uiTextBoxDes.Text=meta.Description;
 			uiComboBoxType.SelectedIndex = (int)meta.Type;
-			if (meta.Type == NetForm.Data.DesignerMeta.ValueType.Index)
+			if (meta.Type == Data.DesignerMeta.ValueType.Index)
 			{
 				//todo 设置索引选中
 
@@ -57,8 +57,8 @@ namespace NetForm.Windows
 			}
 			meta.Name = uiTextBoxName.Text;
 			meta.Description = uiTextBoxDes.Text;
-			meta.Type = (NetForm.Data.DesignerMeta.ValueType)uiComboBoxType.SelectedIndex;
-			if (meta.Type == NetForm.Data.DesignerMeta.ValueType.Index)
+			meta.Type = (Data.DesignerMeta.ValueType)uiComboBoxType.SelectedIndex;
+			if (meta.Type == Data.DesignerMeta.ValueType.Index)
 			{
 				//todo 设置索引
 
