@@ -5,9 +5,9 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetForm", "main\NetForm.csproj", "{59EFE264-6583-4A92-8C6D-DF1330884E1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfacePlugIn", "plugin\InterfacePlugIn\InterfacePlugIn.csproj", "{96DEFAE1-043E-4D3B-B798-07CF08039D66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterfacePlugIn", "plugin\InterfacePlugIn\InterfacePlugIn.csproj", "{96DEFAE1-043E-4D3B-B798-07CF08039D66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignerData", "..\DesignerData\DesignerData.csproj", "{CF42585A-6BFD-4598-9034-B659E539FBB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignerData", "plugin\DesignerData\DesignerData.csproj", "{2FFE9602-9C08-48DE-8A98-1743E991ED9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{96DEFAE1-043E-4D3B-B798-07CF08039D66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96DEFAE1-043E-4D3B-B798-07CF08039D66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96DEFAE1-043E-4D3B-B798-07CF08039D66}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CF42585A-6BFD-4598-9034-B659E539FBB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF42585A-6BFD-4598-9034-B659E539FBB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF42585A-6BFD-4598-9034-B659E539FBB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF42585A-6BFD-4598-9034-B659E539FBB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FFE9602-9C08-48DE-8A98-1743E991ED9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FFE9602-9C08-48DE-8A98-1743E991ED9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FFE9602-9C08-48DE-8A98-1743E991ED9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FFE9602-9C08-48DE-8A98-1743E991ED9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

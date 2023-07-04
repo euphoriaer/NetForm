@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\DesignerData\DesignerData.csproj" />
+    <ProjectReference Include="..\plugin\DesignerData\DesignerData.csproj" />
   </ItemGroup>
 
   <ItemGroup>
