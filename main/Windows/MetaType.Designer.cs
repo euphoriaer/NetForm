@@ -66,6 +66,7 @@
 			uiComboBoxType.Text = "Type";
 			uiComboBoxType.TextAlignment = ContentAlignment.MiddleLeft;
 			uiComboBoxType.Watermark = "";
+			uiComboBoxType.SelectedIndexChanged += uiComboBoxType_SelectedIndexChanged;
 			// 
 			// uiTextBoxDes
 			// 
@@ -123,7 +124,6 @@
 			enterBtn.Size = new Size(150, 35);
 			enterBtn.TabIndex = 5;
 			enterBtn.Text = "确定";
-			enterBtn.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
 			enterBtn.Click += enterBtn_Click;
 			// 
 			// MetaType

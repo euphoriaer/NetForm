@@ -30,11 +30,15 @@ namespace NetForm.Windows
 						$"{Data.DesignerMeta.ValueType.Int}",
 						$"{Data.DesignerMeta.ValueType.Float}",
 						$"{Data.DesignerMeta.ValueType.String}",
+						$"{Data.DesignerMeta.ValueType.Bool}",
 						$"{Data.DesignerMeta.ValueType.Index}",
-						$"{Data.DesignerMeta.ValueType.Bool}"});
+						$"{Data.DesignerMeta.ValueType.Dictionary}",
+						$"{Data.DesignerMeta.ValueType.Array}",
+					}
+					);
 
 			uiTextBoxName.Text = meta.Name;
-			uiTextBoxDes.Text=meta.Description;
+			uiTextBoxDes.Text = meta.Description;
 			uiComboBoxType.SelectedIndex = (int)meta.Type;
 			if (meta.Type == Data.DesignerMeta.ValueType.Index)
 			{
@@ -64,6 +68,11 @@ namespace NetForm.Windows
 
 			}
 			this.DialogResult = DialogResult.OK;
+
+		}
+
+		private void uiComboBoxType_SelectedIndexChanged(object sender, EventArgs e)
+		{
 
 		}
 	}

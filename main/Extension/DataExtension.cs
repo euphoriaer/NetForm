@@ -3,6 +3,7 @@ using Sunny.UI;
 using System.Diagnostics;
 using NetForm.Tools;
 using Data;
+using System.Windows.Forms;
 
 namespace NetForm.Extension
 {
@@ -12,9 +13,9 @@ namespace NetForm.Extension
 		/// 展示Layer数据
 		/// </summary>
 		/// <returns></returns>
-		public static void SetGridView(this DesignerLayer Layer,UIDataGridView gridView)
+		public static void SetGridView(this DesignerLayer Layer, UIDataGridView gridView)
 		{
-			var metas= Layer.metas;
+			var metas = Layer.metas;
 			gridView.Columns.Clear();
 			var count = metas.Count;
 			for (int col = 0; col < count; col++)
@@ -74,6 +75,55 @@ namespace NetForm.Extension
 						columnBool.TrueValue = true;
 						columnBool.FalseValue = false;
 						gridView.Columns.Add(columnBool);
+						break;
+					case DesignerMeta.ValueType.Dictionary:
+						var columnCustom = new DataGridViewColumn();
+						columnCustom.Name= meta.Name;
+						columnCustom.ValueType = typeof(string);
+						columnCustom.CellTemplate = new DataGridViewTextBoxCell();
+						gridView.Columns.Add(columnCustom);
+
+						ComboBox comboBox = new ComboBox();
+						comboBox.Items.Add("A");
+						comboBox.Items.Add("B");
+						comboBox.Items.Add("C");
+						gridView.Controls.Add(comboBox);
+
+						gridView.CurrentCellChanged += (sender, e) =>
+						{
+							DataGridViewColumn column = gridView.CurrentCell.OwningColumn;
+							//如果是要显示下拉列表的列的话
+							if (column.Name.Equals(columnCustom.Name))
+							{
+								int columnIndex = gridView.CurrentCell.ColumnIndex;
+								int rowIndex = gridView.CurrentCell.RowIndex;
+								Rectangle rect = gridView.GetCellDisplayRectangle(columnIndex, rowIndex, false);
+								comboBox.Left = rect.Left;
+								comboBox.Top = rect.Top;
+								comboBox.Width = rect.Width;
+								comboBox.Height = rect.Height;
+								//将单元格的内容显示为下拉列表的当前项
+								string consultingRoom = gridView.Rows[rowIndex].Cells[columnIndex].Value.ToString();
+								int index = comboBox.Items.IndexOf(consultingRoom);
+
+								comboBox.SelectedIndex = index;
+								comboBox.Visible = true;
+							}
+							else
+							{
+								comboBox.Visible = false;
+							}
+
+						};
+						////需要知道对应的layer,这一列 都是一个meta 所以一定对应一个Layer
+						//columnDictionary.DataSource=new List<object>() { "A","B","C" };
+						//gridView.Columns.Add(columnDictionary);
+						break;
+					case DesignerMeta.ValueType.Array:
+						//下拉多选框
+						//columnArrray.Name=meta.Name;
+
+						//gridView.Columns.Add(columnArrray);
 						break;
 					default:
 						break;
@@ -137,7 +187,7 @@ namespace NetForm.Extension
 			}
 		}
 
-		public static void SaveData(this DesignerLayer Layer,UIDataGridView dataGrid)
+		public static void SaveData(this DesignerLayer Layer, UIDataGridView dataGrid)
 		{
 			//按列存储
 			var colIndex = dataGrid.Columns.Count;

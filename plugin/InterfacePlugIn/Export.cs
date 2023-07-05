@@ -6,9 +6,6 @@ namespace InterfacePlugIn
 	{
 		public string Name { get; set; }
 
-		public void OutputFile(string FilePath,DesignerData data)
-		{
-
-		}
+		public void OutputFile(string FilePath, DesignerData data);
 	}
 }

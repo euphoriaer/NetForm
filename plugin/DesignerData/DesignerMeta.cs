@@ -42,8 +42,10 @@ namespace Data
 			Int,
 			Float,
 			String,
-			Index,
 			Bool,
+			Index,
+			Dictionary,
+			Array
 		}
 	}
 }
