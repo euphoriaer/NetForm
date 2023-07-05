@@ -15,6 +15,7 @@ namespace NetForm.Extension
 		/// <returns></returns>
 		public static void SetGridView(this DesignerLayer Layer, UIDataGridView gridView)
 		{
+			gridView.AutoSize = true;
 			var metas = Layer.metas;
 			gridView.Columns.Clear();
 			var count = metas.Count;
@@ -78,46 +79,113 @@ namespace NetForm.Extension
 						break;
 					case DesignerMeta.ValueType.Dictionary:
 						var columnCustom = new DataGridViewColumn();
-						columnCustom.Name= meta.Name;
+						columnCustom.Name = meta.Name;
+						columnCustom.ReadOnly = true;
 						columnCustom.ValueType = typeof(string);
 						columnCustom.CellTemplate = new DataGridViewTextBoxCell();
-						gridView.Columns.Add(columnCustom);
+						var dicColIndex = gridView.Columns.Add(columnCustom);
 
-						ComboBox comboBox = new ComboBox();
+						UIComboBox comboBox = new UIComboBox();
+						comboBox.Visible = false;
+						//todo 需要知道对应的layer,这一列 都是一个meta 所以一定对应一个Layer
+						//columnDictionary.DataSource=new List<object>() { "A","B","C" };
+						//gridView.Columns.Add(columnDictionary);
+						List<string> comboxAllCanSelect = new List<string>();
+
 						comboBox.Items.Add("A");
 						comboBox.Items.Add("B");
 						comboBox.Items.Add("C");
+						comboBox.Items.Add("C1");
+						comboBox.Items.Add("C2");
+						comboBox.Items.Add("C233");
+						comboBox.Items.Add("C2444");
+						comboBox.Items.Add("1548");
+						comboBox.Items.Add("1549");
+						comboBox.Items.Add("1550");
+						comboBox.Items.Add("1551");
+						comboBox.Items.Add("1552");
+						comboBox.Items.Add("1553");
+						comboBox.Items.Add("152254");
+						comboBox.Items.Add("152254");
+						comboBox.Items.Add("152254");
+						comboBox.Items.Add("153354");
+						comboBox.Items.Add("154454");
+						comboBox.Items.Add("2512354");
+						comboBox.Items.Add("2544154");
+						comboBox.Items.Add("2523254");
+						comboBox.Items.Add("3512354");
+						comboBox.Items.Add("3544154");
+						comboBox.Items.Add("3523254");
+						comboBox.Items.Add("4512354");
+						comboBox.Items.Add("4544154");
+						comboBox.Items.Add("3523254");
+						comboBox.Items.Add("15EE254$$$$$$444444444444");
+						comboBox.Items.Add("552354");
 						gridView.Controls.Add(comboBox);
 
-						gridView.CurrentCellChanged += (sender, e) =>
+
+						comboBox.SelectedIndexChanged += (sender, e) =>
 						{
-							DataGridViewColumn column = gridView.CurrentCell.OwningColumn;
-							//如果是要显示下拉列表的列的话
-							if (column.Name.Equals(columnCustom.Name))
+							if (gridView.CurrentCell != null)
 							{
+								if (comboBox.SelectedIndex == -1)
+								{
+									return;
+								}
+								gridView.CurrentCell.Value = comboBox.Items[comboBox.SelectedIndex];
+							}
+							comboBox.Visible = false;
+						};
+
+						gridView.CellMouseClick += (sender, e) =>
+						{
+							//todo 右键导航，新layer填写新参数
+						};
+
+						gridView.CellDoubleClick += (sender, e) =>
+						{
+							if (e.ColumnIndex == dicColIndex)
+							{
+								comboBox.Visible = true;
+								DataGridViewColumn column = gridView.CurrentCell?.OwningColumn;
+								if (column == null)
+								{
+									return;
+								}
+								//如果是要显示下拉列表的列的话
 								int columnIndex = gridView.CurrentCell.ColumnIndex;
 								int rowIndex = gridView.CurrentCell.RowIndex;
 								Rectangle rect = gridView.GetCellDisplayRectangle(columnIndex, rowIndex, false);
 								comboBox.Left = rect.Left;
+								comboBox.DropDownAutoWidth = true;
+								//comboBox.DrawItem += (s, ecomb) =>
+								//{
+								//	ecomb.DrawBackground();
+								//	ecomb.Graphics.DrawString(comboBox.Items[ecomb.Index].ToString(), ecomb.Font, Brushes.Black,
+								//	ecomb.Bounds, StringFormat.GenericDefault);
+								//};
+
 								comboBox.Top = rect.Top;
 								comboBox.Width = rect.Width;
 								comboBox.Height = rect.Height;
 								//将单元格的内容显示为下拉列表的当前项
-								string consultingRoom = gridView.Rows[rowIndex].Cells[columnIndex].Value.ToString();
-								int index = comboBox.Items.IndexOf(consultingRoom);
-
+								int index = 0;
+								string consultingRoom = gridView.Rows[rowIndex].Cells[columnIndex].Value?.ToString();
+								if (string.IsNullOrEmpty(consultingRoom))
+								{
+									index = 0;
+								}
+								else
+								{
+									index = comboBox.Items.IndexOf(consultingRoom);
+								}
 								comboBox.SelectedIndex = index;
-								comboBox.Visible = true;
 							}
 							else
 							{
 								comboBox.Visible = false;
 							}
-
 						};
-						////需要知道对应的layer,这一列 都是一个meta 所以一定对应一个Layer
-						//columnDictionary.DataSource=new List<object>() { "A","B","C" };
-						//gridView.Columns.Add(columnDictionary);
 						break;
 					case DesignerMeta.ValueType.Array:
 						//下拉多选框
