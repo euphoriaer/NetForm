@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace NetForm.Windows
 {
-	public partial class SearchCombox : UserControl
+	public partial class SelectForm : Form
 	{
-		public SearchCombox()
+		public SelectForm()
 		{
 			InitializeComponent();
+		}
+		public List<string> result = new List<string>();
+		private void SelectForm_Load(object sender, EventArgs e)
+		{
+			//单选 多选
 		}
 	}
 }
