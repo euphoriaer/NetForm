@@ -28,13 +28,23 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			SelectGrid = new BinGrid();
 			SuspendLayout();
+			// 
+			// SelectGrid
+			// 
+			SelectGrid.Location = new Point(12, 12);
+			SelectGrid.Name = "SelectGrid";
+			SelectGrid.Size = new Size(1036, 604);
+			SelectGrid.TabIndex = 0;
+			SelectGrid.Load += SelectGrid_Load;
 			// 
 			// SelectForm
 			// 
 			AutoScaleDimensions = new SizeF(7F, 17F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(800, 450);
+			ClientSize = new Size(1060, 628);
+			Controls.Add(SelectGrid);
 			Name = "SelectForm";
 			Text = "SelectForm";
 			Load += SelectForm_Load;
@@ -42,5 +52,7 @@
 		}
 
 		#endregion
+
+		private BinGrid SelectGrid;
 	}
 }

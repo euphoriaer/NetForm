@@ -4,6 +4,7 @@ using OfficeOpenXml;
 using System.Data;
 using NetForm.Extension;
 using LicenseContext = OfficeOpenXml.LicenseContext;
+using static NetForm.Windows.SelectForm;
 
 namespace NetForm.Windows
 {
@@ -15,12 +16,33 @@ namespace NetForm.Windows
 		public BinGrid()
 		{
 			InitializeComponent();
+		}
+
+		public BinGrid(ref DesignerLayer layer, ref DesignerData data)
+		{
+			InitializeComponent();
+
+			Init(ref layer, ref data);
+		}
+
+		public void Init(ref DesignerLayer layer, ref DesignerData data, SelectMode mode =SelectMode.Null)
+		{
 			uiDataGridView1.AllowDrop = true;
 			uiDataGridView1.DataError += GridView_DataError;
 			uiDataGridView1.DragEnter += UiDataGridView1_DragEnter;
 			uiDataGridView1.DragDrop += UiDataGridView1_DragDrop;
+			designerData = data;
+			curLayer = layer;
+			if (mode == SelectMode.Null)
+			{
+				layer.SetGridView(uiDataGridView1, data);
+			}
+			else
+			{
+				layer.SetGridViewCanCheck(uiDataGridView1,data);
+			}
+			
 		}
-		
 
 		private void UiDataGridView1_DragEnter(object? sender, DragEventArgs e)
 		{
@@ -46,7 +68,7 @@ namespace NetForm.Windows
 
 		public void ExcelToGrid(string excelPath)
 		{
-			if (curLayer==null)
+			if (curLayer == null)
 			{
 				MessageBox.Show("未选择表");
 				return;
@@ -56,11 +78,11 @@ namespace NetForm.Windows
 			{
 				ExcelWorksheet sheet = excelPackage.Workbook.Worksheets[0];
 				//遍历cell,符合条件的导入
-				
+
 				int sheetRowsCount = sheet.GetRealRowCount();
-			
+
 				var colIndex = uiDataGridView1.Columns.Count;
-				
+
 				while (uiDataGridView1.Rows.Count < sheetRowsCount)
 				{
 					uiDataGridView1.Rows.Add();
@@ -92,15 +114,7 @@ namespace NetForm.Windows
 			}
 		}
 
-		public BinGrid(ref DesignerLayer layer, ref DesignerData data)
-		{
-			InitializeComponent();
-			designerData = data;
-			uiDataGridView1.AllowDrop = true;
-			curLayer = layer;
-			uiDataGridView1.DataError += GridView_DataError;
-			layer.SetGridView(uiDataGridView1);
-		}
+
 
 		private void GridView_DataError(object? sender, DataGridViewDataErrorEventArgs e)
 		{
@@ -115,7 +129,7 @@ namespace NetForm.Windows
 		{
 			designerData = data;
 			curLayer = layer;
-			layer.SetGridView(uiDataGridView1);
+			layer.SetGridView(uiDataGridView1,data);
 		}
 
 		private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -175,6 +189,6 @@ namespace NetForm.Windows
 
 			ExcelToGrid(filePath[0]);
 		}
-		
+
 	}
 }
