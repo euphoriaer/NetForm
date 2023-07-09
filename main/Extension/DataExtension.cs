@@ -143,7 +143,9 @@ namespace NetForm.Extension
 				}
 				while (gridView.Rows.Count < dataArray.Count)
 				{
-					gridView.Rows.Add();
+					var row=gridView.Rows.Add();
+					gridView.Rows[row].HeaderCell.Value = row.ToString();
+					//设置行号
 				}
 				for (int row = 0; row < dataArray.Count; row++)
 				{
@@ -328,7 +330,8 @@ namespace NetForm.Extension
 				var dataArray = bson[meta.Name].AsArray;
 				while (gridView.Rows.Count < dataArray.Count)
 				{
-					gridView.Rows.Add();
+					var row=gridView.Rows.Add();
+					gridView.Rows[row].HeaderCell.Value = row.ToString();
 				}
 				for (int row = 0; row < dataArray.Count; row++)
 				{
