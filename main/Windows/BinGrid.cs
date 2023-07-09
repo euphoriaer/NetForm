@@ -8,11 +8,12 @@ using static NetForm.Windows.SelectForm;
 
 namespace NetForm.Windows
 {
-	public partial class BinGrid : UserControl
+    public partial class BinGrid : UserControl
 	{
 		private DesignerData designerData;
 		private DataTable dbTable;
 		private DesignerLayer curLayer;
+		public SelectMode selectMode=SelectMode.Null;
 		public BinGrid()
 		{
 			InitializeComponent();
@@ -33,6 +34,7 @@ namespace NetForm.Windows
 			uiDataGridView1.DragDrop += UiDataGridView1_DragDrop;
 			designerData = data;
 			curLayer = layer;
+			selectMode = mode;
 			if (mode == SelectMode.Null)
 			{
 				layer.SetGridView(uiDataGridView1, data);
@@ -159,7 +161,15 @@ namespace NetForm.Windows
 
 		private void toolStripButton2_Click(object sender, EventArgs e)
 		{
-			curLayer.SaveData(uiDataGridView1);
+			if (selectMode ==SelectMode.Null)
+			{
+				curLayer.SaveData(uiDataGridView1);
+			}
+			else
+			{
+				curLayer.SaveData(uiDataGridView1,true);
+			}
+			
 			designerData.SaveToLiteDB();
 		}
 

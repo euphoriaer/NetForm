@@ -1,7 +1,6 @@
 ﻿using LiteDB;
 using Sunny.UI;
 using System.Diagnostics;
-using NetForm.Tools;
 using Data;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -15,7 +14,7 @@ namespace NetForm.Extension
 		/// 展示Layer数据
 		/// </summary>
 		/// <returns></returns>
-		public static void SetGridView(this DesignerLayer Layer, UIDataGridView gridView,DesignerData data)
+		public static void SetGridView(this DesignerLayer Layer, UIDataGridView gridView, DesignerData data)
 		{
 			gridView.AutoSize = true;
 			var metas = Layer.metas;
@@ -92,11 +91,13 @@ namespace NetForm.Extension
 							if (e.ColumnIndex == Index)
 							{
 								//弹出多选框
-								NetForm.Windows.SelectForm form = new NetForm.Windows.SelectForm(NetForm.Windows.SelectForm.SelectMode.Single,ref meta,ref data);
+								NetForm.Windows.SelectForm form = new NetForm.Windows.SelectForm(NetForm.Windows.SelectForm.SelectMode.Single, ref meta, ref data);
 								var res = form.ShowDialog();
-								var selectValue = form.selectValues;
-
-								gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = selectValue;
+								if (res == DialogResult.OK)
+								{
+									var selectValue = form.selectValues;
+									gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = selectValue;
+								}
 							}
 						};
 
@@ -115,8 +116,13 @@ namespace NetForm.Extension
 							{
 								NetForm.Windows.SelectForm form = new NetForm.Windows.SelectForm(NetForm.Windows.SelectForm.SelectMode.Multiple, ref meta, ref data);
 								var res = form.ShowDialog();
-								var selectValue = form.selectValues;
-								gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = selectValue;
+
+								if (res == DialogResult.OK)
+								{
+									var selectValue = form.selectValues;
+									gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = selectValue;
+								}
+
 							}
 						};
 						break;
@@ -131,6 +137,10 @@ namespace NetForm.Extension
 				}
 				var bson = meta.Data;
 				var dataArray = bson[meta.Name].AsArray;
+				if (dataArray==null)
+				{
+					continue;
+				}
 				while (gridView.Rows.Count < dataArray.Count)
 				{
 					gridView.Rows.Add();
@@ -181,13 +191,14 @@ namespace NetForm.Extension
 				}
 			}
 		}
-		public static void SetGridViewCanCheck(this DesignerLayer Layer, UIDataGridView gridView,DesignerData data)
+		public static void SetGridViewCanCheck(this DesignerLayer Layer, UIDataGridView gridView, DesignerData data)
 		{
 			gridView.AutoSize = true;
 			var metas = Layer.metas;
 			gridView.Columns.Clear();
 			var count = metas.Count;
-			//第0列为CheckBox
+			//第0列为CheckBox，填充数据从第一列开始
+			int startIndex = 1;
 
 			var columnBool = new DataGridViewCheckBoxColumn();
 			columnBool.ValueType = typeof(bool);
@@ -198,7 +209,6 @@ namespace NetForm.Extension
 			columnBool.TrueValue = true;
 			columnBool.FalseValue = false;
 			gridView.Columns.Add(columnBool);
-
 			for (int col = 0; col < count; col++)
 			{
 				DesignerMeta meta = metas[col];
@@ -272,9 +282,13 @@ namespace NetForm.Extension
 								//弹出多选框
 								NetForm.Windows.SelectForm form = new NetForm.Windows.SelectForm(NetForm.Windows.SelectForm.SelectMode.Single, ref meta, ref data);
 								var res = form.ShowDialog();
-								var selectValue = form.selectValues;
 
-								gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = selectValue;
+								if (res == DialogResult.OK)
+								{
+									var selectValue = form.selectValues;
+									gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = selectValue;
+								}
+
 							}
 						};
 
@@ -293,8 +307,11 @@ namespace NetForm.Extension
 							{
 								NetForm.Windows.SelectForm form = new NetForm.Windows.SelectForm(NetForm.Windows.SelectForm.SelectMode.Multiple, ref meta, ref data);
 								var res = form.ShowDialog();
-								var selectValue = form.selectValues;
-								gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = selectValue;
+								if (res == DialogResult.OK)
+								{
+									var selectValue = form.selectValues;
+									gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = selectValue;
+								}
 							}
 						};
 						break;
@@ -323,17 +340,17 @@ namespace NetForm.Extension
 						case BsonType.Null:
 							break;
 						case BsonType.Int32:
-							gridView.Rows[row].Cells[col].Value = value.AsInt32;
+							gridView.Rows[row].Cells[col + startIndex].Value = value.AsInt32;
 							break;
 						case BsonType.Int64:
 							break;
 						case BsonType.Double:
-							gridView.Rows[row].Cells[col].Value = value.AsDouble;
+							gridView.Rows[row].Cells[col + startIndex].Value = value.AsDouble;
 							break;
 						case BsonType.Decimal:
 							break;
 						case BsonType.String:
-							gridView.Rows[row].Cells[col].Value = value.AsString;
+							gridView.Rows[row].Cells[col + startIndex].Value = value.AsString;
 							break;
 						case BsonType.Document:
 							break;
@@ -346,7 +363,7 @@ namespace NetForm.Extension
 						case BsonType.Guid:
 							break;
 						case BsonType.Boolean:
-							gridView.Rows[row].Cells[col].Value = value.AsBoolean;
+							gridView.Rows[row].Cells[col + startIndex].Value = value.AsBoolean;
 							break;
 						case BsonType.DateTime:
 							break;
@@ -360,12 +377,18 @@ namespace NetForm.Extension
 			}
 		}
 
-		public static void SaveData(this DesignerLayer Layer, UIDataGridView dataGrid)
+		public static void SaveData(this DesignerLayer Layer, UIDataGridView dataGrid, bool isSelectMode = false)
 		{
 			//按列存储
 			var colIndex = dataGrid.Columns.Count;
 			var metas = Layer.metas;
-			for (int col = 0; col < colIndex; col++)
+			var starIndex = 0;
+			if (isSelectMode)
+			{
+				//选择模式，不存储第一列，第一列非数据，作为父级Cell的选择
+				starIndex = 1;
+			}
+			for (int col = starIndex; col < colIndex; col++)
 			{
 				var curCol = dataGrid.Columns[col];
 				var cellIndex = dataGrid.RowCount;
@@ -377,7 +400,7 @@ namespace NetForm.Extension
 					{
 
 						var cell = dataGrid.Rows[row]?.Cells[col].Value;
-						var colMetaType = metas[col].Type;
+						var colMetaType = metas[col - starIndex].Type;
 						bool suitableType = cell.IsMetaType(colMetaType);
 						if (!suitableType)
 						{
@@ -402,7 +425,7 @@ namespace NetForm.Extension
 					}
 
 				}
-				var curMeta = metas[col];
+				var curMeta = metas[col - starIndex];
 				BsonDocument bsonData = new BsonDocument();
 				bsonData.Add(curCol.Name, bson);
 				curMeta.Data = bsonData;

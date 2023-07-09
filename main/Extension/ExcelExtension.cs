@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace NetForm.Tools
+namespace NetForm.Extension
 {
 	public static class ExcelExtension
 	{
@@ -26,13 +26,13 @@ namespace NetForm.Tools
 			return count - 1;
 		}
 
-		public static bool IsMetaType(this Object? value, DesignerMeta.ValueType checkType)
+		public static bool IsMetaType(this object? value, DesignerMeta.ValueType checkType)
 		{
 
 			if (value is int)
 			{
-				if ((checkType != DesignerMeta.ValueType.Int)
-					 && (checkType != DesignerMeta.ValueType.String)
+				if (checkType != DesignerMeta.ValueType.Int
+					 && checkType != DesignerMeta.ValueType.String
 					)
 				{
 					return false;
@@ -40,9 +40,9 @@ namespace NetForm.Tools
 			}
 			else if (value is double)
 			{
-				if ((checkType != DesignerMeta.ValueType.Float)
-					 &&(checkType != DesignerMeta.ValueType.Int)
-					 && (checkType != DesignerMeta.ValueType.String)
+				if (checkType != DesignerMeta.ValueType.Float
+					 && checkType != DesignerMeta.ValueType.Int
+					 && checkType != DesignerMeta.ValueType.String
 					)
 				{
 					return false;
@@ -57,7 +57,9 @@ namespace NetForm.Tools
 			}
 			else if (value is string)
 			{
-				if (checkType != DesignerMeta.ValueType.String)
+				if (checkType != DesignerMeta.ValueType.String
+					&& checkType != DesignerMeta.ValueType.Dictionary
+					&& checkType != DesignerMeta.ValueType.Array)
 				{
 					return false;
 				}

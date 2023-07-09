@@ -205,7 +205,7 @@
 		private BindingSource designerMetaBindingSource;
 		private ToolStrip toolStrip1;
 		private ToolStripContainer toolStripContainer1;
-		private Sunny.UI.UIDataGridView uiDataGridView1;
+		public Sunny.UI.UIDataGridView uiDataGridView1;
 		private ToolStripButton toolStripButton2;
 		private ContextMenuStrip contextMenu;
 		private ToolStripButton toolStripButton1;
