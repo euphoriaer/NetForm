@@ -35,7 +35,7 @@
 			toolStripButton1 = new ToolStripButton();
 			FormList = new Sunny.UI.UIListBox();
 			errorProvider1 = new ErrorProvider(components);
-			binGrid1 = new Windows.BinGrid();
+			formTabControl = new Sunny.UI.UITabControl();
 			mainToolStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
 			SuspendLayout();
@@ -76,6 +76,7 @@
 			// 
 			// FormList
 			// 
+			FormList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
 			FormList.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
 			FormList.HoverColor = Color.FromArgb(155, 200, 255);
 			FormList.ItemSelectForeColor = Color.White;
@@ -85,7 +86,7 @@
 			FormList.Name = "FormList";
 			FormList.Padding = new Padding(2);
 			FormList.ShowText = false;
-			FormList.Size = new Size(256, 937);
+			FormList.Size = new Size(256, 965);
 			FormList.Style = Sunny.UI.UIStyle.Custom;
 			FormList.TabIndex = 2;
 			FormList.Text = "uiListBox1";
@@ -94,21 +95,28 @@
 			// 
 			errorProvider1.ContainerControl = this;
 			// 
-			// binGrid1
+			// formTabControl
 			// 
-			binGrid1.AutoSize = true;
-			binGrid1.Location = new Point(340, 5);
-			binGrid1.Name = "binGrid1";
-			binGrid1.Size = new Size(1348, 925);
-			binGrid1.TabIndex = 3;
-			binGrid1.Load += binGrid1_Load;
+			formTabControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+			formTabControl.DrawMode = TabDrawMode.OwnerDrawFixed;
+			formTabControl.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			formTabControl.ItemSize = new Size(150, 40);
+			formTabControl.Location = new Point(352, 0);
+			formTabControl.MainPage = "";
+			formTabControl.Name = "formTabControl";
+			formTabControl.SelectedIndex = 0;
+			formTabControl.Size = new Size(1346, 965);
+			formTabControl.SizeMode = TabSizeMode.Fixed;
+			formTabControl.TabIndex = 4;
+			formTabControl.TabUnSelectedForeColor = Color.FromArgb(240, 240, 240);
+			formTabControl.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
 			// 
 			// Main
 			// 
 			AutoScaleDimensions = new SizeF(7F, 17F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(1700, 965);
-			Controls.Add(binGrid1);
+			Controls.Add(formTabControl);
 			Controls.Add(FormList);
 			Controls.Add(mainToolStrip);
 			Name = "Main";
@@ -129,6 +137,6 @@
 		private Sunny.UI.UIListBox FormList;
 		private ToolStripButton toolStripButton1;
 		private ErrorProvider errorProvider1;
-		private Windows.BinGrid binGrid1;
+		private Sunny.UI.UITabControl formTabControl;
 	}
 }

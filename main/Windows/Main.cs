@@ -1,11 +1,13 @@
 ﻿using Data;
+using NetForm.Windows;
 using Sunny.UI;
-
+using System.Windows.Forms;
 
 namespace NetForm
 {
 	public partial class Main : Form
 	{
+		private Dictionary<string, int> Tabmap = new Dictionary<string, int>();
 		public Main()
 		{
 			InitializeComponent();
@@ -38,7 +40,7 @@ namespace NetForm
 				}
 			}
 			string connectStr = $"Data Source={path}";
-		
+
 			//FormList
 			var des = LiteDbContext.Litedb.Designer.GetDesigner();
 			for (int i = 0; i < des.Count; i++)
@@ -46,7 +48,7 @@ namespace NetForm
 				FormList.Items.Add(des[i].Name);
 			}
 			FormList.DoubleClick += FormList_DoubleClick;
-			
+
 		}
 
 		private void FormList_DoubleClick(object? sender, EventArgs e)
@@ -54,7 +56,28 @@ namespace NetForm
 			var des = LiteDbContext.Litedb.Designer.GetDesigner();
 			var data = des[FormList.SelectedIndex];
 			var layer = data.Root;
-			binGrid1.SetDataSource(ref layer,ref data);
+
+			//转到对应tab 选项卡,或者新建tab 选项卡,填充
+			if (Tabmap.ContainsKey(data.Name))
+			{
+				formTabControl.SelectTab(Tabmap[data.Name]);
+				return;
+			}
+
+			UIPage tabPage = new UIPage();
+			tabPage.Name = data.Name;
+			tabPage.Text = data.Name;
+
+			BinGrid grid = new BinGrid();
+			tabPage.Controls.Add(grid);
+			formTabControl.AddPage(tabPage);
+			var curIndex = formTabControl.TabCount - 1;
+			Tabmap.Add(data.Name, curIndex);
+			formTabControl.SelectTab(curIndex);
+
+			grid.Dock = DockStyle.Fill;
+			grid.Init(ref layer, ref data);
+
 		}
 
 		private void CreateForm_Click(object sender, EventArgs e)
