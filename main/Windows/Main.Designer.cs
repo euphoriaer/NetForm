@@ -109,7 +109,7 @@
 			formTabControl.SizeMode = TabSizeMode.Fixed;
 			formTabControl.TabIndex = 4;
 			formTabControl.TabUnSelectedForeColor = Color.FromArgb(240, 240, 240);
-			formTabControl.TipsFont = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
+			formTabControl.SelectedIndexChanged += formTabControl_SelectedIndexChanged;
 			// 
 			// Main
 			// 

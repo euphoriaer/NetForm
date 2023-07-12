@@ -1,17 +1,47 @@
 ﻿using Data;
+using NetForm.Extension;
 using NetForm.Windows;
 using Sunny.UI;
+using System.Collections.Generic;
+using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace NetForm
 {
 	public partial class Main : Form
 	{
-		private Dictionary<string, int> Tabmap = new Dictionary<string, int>();
 		public Main()
 		{
 			InitializeComponent();
+			formTabControl.DrawItem += FormTabControl_DrawItem;
+			formTabControl.MouseDown += FormTabControl_MouseDown;
 			InitData();
+		}
+
+		private void FormTabControl_MouseDown(object? sender, MouseEventArgs e)
+		{
+			for (int i = 0; i < this.formTabControl.TabPages.Count; i++)
+			{
+				Rectangle r = formTabControl.GetTabRect(i);
+
+				if (e.Button==MouseButtons.Middle
+					&& r.Contains(e.Location))
+				{
+					this.formTabControl.TabPages.RemoveAt(i);
+					return;
+				}
+			}
+		}
+
+		private void FormTabControl_DrawItem(object? sender, DrawItemEventArgs e)
+		{
+			//这里我们添加一个新的Padding，来增加x的距离
+			formTabControl.Padding = new System.Drawing.Point(0, 0);
+
+			//这里我们用DrawString来画一个x字符
+			e.Graphics.DrawString("X", e.Font, Brushes.White, e.Bounds.Right, e.Bounds.Top);
+			e.Graphics.DrawString(this.formTabControl.TabPages[e.Index].Text, e.Font, Brushes.White, e.Bounds.Left, e.Bounds.Top);
+			e.DrawFocusRectangle();
 		}
 
 		private void InitData()
@@ -58,9 +88,8 @@ namespace NetForm
 			var layer = data.Root;
 
 			//转到对应tab 选项卡,或者新建tab 选项卡,填充
-			if (Tabmap.ContainsKey(data.Name))
+			if (formTabControl.SetTab(data.Name))
 			{
-				formTabControl.SelectTab(Tabmap[data.Name]);
 				return;
 			}
 
@@ -72,7 +101,6 @@ namespace NetForm
 			tabPage.Controls.Add(grid);
 			formTabControl.AddPage(tabPage);
 			var curIndex = formTabControl.TabCount - 1;
-			Tabmap.Add(data.Name, curIndex);
 			formTabControl.SelectTab(curIndex);
 
 			grid.Dock = DockStyle.Fill;
@@ -152,6 +180,11 @@ namespace NetForm
 		}
 
 		private void binGrid1_Load(object sender, EventArgs e)
+		{
+
+		}
+
+		private void formTabControl_SelectedIndexChanged(object sender, EventArgs e)
 		{
 
 		}

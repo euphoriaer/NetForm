@@ -424,7 +424,7 @@ namespace NetForm.Extension
 					catch (Exception)
 					{
 						MessageBox.Show($"数据格式错误 行{row} 列{col}");
-						break;
+						continue;
 					}
 
 				}
@@ -433,6 +433,19 @@ namespace NetForm.Extension
 				bsonData.Add(curCol.Name, bson);
 				curMeta.Data = bsonData;
 			}
+		}
+
+		public static bool SetTab(this UITabControl table,string name)
+		{
+			for (int i = 0; i < table.TabPages.Count; i++)
+			{
+				if (table.TabPages[i].Text==name)
+				{
+					table.SelectTab(i);
+					return true;
+				}
+			}
+			return false;
 		}
 	}
 }

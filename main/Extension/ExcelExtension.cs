@@ -33,6 +33,7 @@ namespace NetForm.Extension
 			{
 				if (checkType != DesignerMeta.ValueType.Int
 					 && checkType != DesignerMeta.ValueType.String
+					 && checkType != DesignerMeta.ValueType.Index
 					)
 				{
 					return false;
@@ -43,6 +44,7 @@ namespace NetForm.Extension
 				if (checkType != DesignerMeta.ValueType.Float
 					 && checkType != DesignerMeta.ValueType.Int
 					 && checkType != DesignerMeta.ValueType.String
+					 && checkType != DesignerMeta.ValueType.Index
 					)
 				{
 					return false;
@@ -50,7 +52,8 @@ namespace NetForm.Extension
 			}
 			else if (value is bool)
 			{
-				if (checkType != DesignerMeta.ValueType.Bool)
+				if (checkType != DesignerMeta.ValueType.Bool
+					)
 				{
 					return false;
 				}
@@ -59,7 +62,9 @@ namespace NetForm.Extension
 			{
 				if (checkType != DesignerMeta.ValueType.String
 					&& checkType != DesignerMeta.ValueType.Dictionary
-					&& checkType != DesignerMeta.ValueType.Array)
+					&& checkType != DesignerMeta.ValueType.Array
+					&& checkType != DesignerMeta.ValueType.Index
+					)
 				{
 					return false;
 				}
