@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExportJson", "ExportJson\Ex
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{7C67BF73-BC64-432E-B995-E9373107BE09}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlatBuffer", "FlatBuffer\FlatBuffer.csproj", "{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,26 @@ Global
 		{7C67BF73-BC64-432E-B995-E9373107BE09}.Release|ARM64.ActiveCfg = Release
 		{7C67BF73-BC64-432E-B995-E9373107BE09}.Release|x64.ActiveCfg = Release
 		{7C67BF73-BC64-432E-B995-E9373107BE09}.Release|x86.ActiveCfg = Release
+		{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}.Debug|ARM.Build.0 = Debug|Any CPU
+		{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}.Debug|x64.Build.0 = Debug|Any CPU
+		{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}.Debug|x86.Build.0 = Debug|Any CPU
+		{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}.Release|ARM.ActiveCfg = Release|Any CPU
+		{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}.Release|ARM.Build.0 = Release|Any CPU
+		{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}.Release|ARM64.Build.0 = Release|Any CPU
+		{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}.Release|x64.ActiveCfg = Release|Any CPU
+		{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}.Release|x64.Build.0 = Release|Any CPU
+		{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}.Release|x86.ActiveCfg = Release|Any CPU
+		{78ACBDF4-8E6B-45FA-A53D-F2688B46F754}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
