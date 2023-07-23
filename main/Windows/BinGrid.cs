@@ -161,6 +161,7 @@ namespace NetForm.Windows
 
 		private void toolStripButton2_Click(object sender, EventArgs e)
 		{
+			uiDataGridView1.CommitEdit(new DataGridViewDataErrorContexts());
 			if (selectMode ==SelectMode.Null)
 			{
 				curLayer.SaveData(uiDataGridView1);
