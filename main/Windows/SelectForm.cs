@@ -23,13 +23,21 @@ namespace NetForm.Windows
 			InitializeComponent();
 		}
 
-		public SelectForm(SelectMode selectMode, ref Data.DesignerMeta meta, ref Data.DesignerData data)
+		public SelectForm(SelectMode selectMode, string selectValueStr, ref Data.DesignerMeta meta, ref Data.DesignerData data)
 		{
 			InitializeComponent();
 			var layer = meta.Son;
 			//行列填充
 			SelectGrid.Init(ref layer, ref data, selectMode);
-
+			//勾选对应项
+			if(!string.IsNullOrEmpty(selectValueStr))
+			{
+				var selectValues= selectValueStr.Split(',');
+				for(int i = 0; i < selectValues.Length; i++)
+				{
+					SelectGrid.Select(selectValues[i]);
+				}
+			}
 		}
 
 		public List<string> result = new List<string>();

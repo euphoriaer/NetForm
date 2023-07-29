@@ -5,6 +5,7 @@ using System.Data;
 using NetForm.Extension;
 using LicenseContext = OfficeOpenXml.LicenseContext;
 using static NetForm.Windows.SelectForm;
+using Sunny.UI;
 
 namespace NetForm.Windows
 {
@@ -44,6 +45,35 @@ namespace NetForm.Windows
 				layer.SetGridViewCanCheck(uiDataGridView1,data);
 			}
 			
+		}
+
+		public void Select(string ID)
+		{
+			//
+			var checkColumn= uiDataGridView1.Columns[0];
+			if (checkColumn.Name!="Check")
+			{
+				return;
+			}
+			var rowCount = uiDataGridView1.RowCount;
+			for (int rowIndex = 0; rowIndex < rowCount; rowIndex++)
+			{
+				if (uiDataGridView1.Rows[rowIndex].Cells[1].Value==null)
+				{
+					continue;
+				}
+
+				var curID= uiDataGridView1.Rows[rowIndex].Cells[1].Value.ToString();
+				if (string.IsNullOrEmpty(curID))
+				{
+					continue;
+				}
+
+				if (curID== ID)
+				{
+					uiDataGridView1.Rows[rowIndex].Cells[checkColumn.Name].Value = true;
+				}
+			}
 		}
 
 		private void UiDataGridView1_DragEnter(object? sender, DragEventArgs e)

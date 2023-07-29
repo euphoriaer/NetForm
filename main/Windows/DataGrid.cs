@@ -21,5 +21,10 @@ namespace NetForm
 		{
 
 		}
+
+		private void binGrid1_Load(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

@@ -90,8 +90,13 @@ namespace NetForm.Extension
 						{
 							if (e.ColumnIndex == Index)
 							{
+								var curSelect = gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+								if (curSelect==null)
+								{
+									curSelect = "";
+								}
 								//弹出多选框
-								NetForm.Windows.SelectForm form = new NetForm.Windows.SelectForm(NetForm.Windows.SelectForm.SelectMode.Single, ref meta, ref data);
+								NetForm.Windows.SelectForm form = new NetForm.Windows.SelectForm(NetForm.Windows.SelectForm.SelectMode.Single, curSelect.ToString(), ref meta, ref data);
 								var res = form.ShowDialog();
 								if (res == DialogResult.OK)
 								{
@@ -114,7 +119,12 @@ namespace NetForm.Extension
 						{
 							if (e.ColumnIndex == arrayColIndex1)
 							{
-								NetForm.Windows.SelectForm form = new NetForm.Windows.SelectForm(NetForm.Windows.SelectForm.SelectMode.Multiple, ref meta, ref data);
+								var curSelect = gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+								if (curSelect == null)
+								{
+									curSelect = "";
+								}
+								NetForm.Windows.SelectForm form = new NetForm.Windows.SelectForm(NetForm.Windows.SelectForm.SelectMode.Multiple, curSelect.ToString(), ref meta, ref data);
 								var res = form.ShowDialog();
 
 								if (res == DialogResult.OK)
@@ -282,7 +292,12 @@ namespace NetForm.Extension
 							if (e.ColumnIndex == Index)
 							{
 								//弹出多选框
-								NetForm.Windows.SelectForm form = new NetForm.Windows.SelectForm(NetForm.Windows.SelectForm.SelectMode.Single, ref meta, ref data);
+								var curSelect = gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+								if (curSelect == null)
+								{
+									curSelect = "";
+								}
+								NetForm.Windows.SelectForm form = new NetForm.Windows.SelectForm(NetForm.Windows.SelectForm.SelectMode.Single, curSelect.ToString(), ref meta, ref data);
 								var res = form.ShowDialog();
 
 								if (res == DialogResult.OK)
@@ -307,7 +322,12 @@ namespace NetForm.Extension
 						{
 							if (e.ColumnIndex == arrayColIndex1)
 							{
-								NetForm.Windows.SelectForm form = new NetForm.Windows.SelectForm(NetForm.Windows.SelectForm.SelectMode.Multiple, ref meta, ref data);
+								var curSelect = gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+								if (curSelect == null)
+								{
+									curSelect = "";
+								}
+								NetForm.Windows.SelectForm form = new NetForm.Windows.SelectForm(NetForm.Windows.SelectForm.SelectMode.Multiple, curSelect.ToString(), ref meta, ref data);
 								var res = form.ShowDialog();
 								if (res == DialogResult.OK)
 								{

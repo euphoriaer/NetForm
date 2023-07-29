@@ -37,6 +37,7 @@
 			binGrid1.Name = "binGrid1";
 			binGrid1.Size = new Size(1093, 640);
 			binGrid1.TabIndex = 0;
+			binGrid1.Load += binGrid1_Load;
 			// 
 			// DataGrid
 			// 
