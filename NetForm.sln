@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignerData", "plugin\Desi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExportJson", "ExportJson\ExportJson.csproj", "{7A8D6D3E-3625-4BE7-B3F2-765CCF50DCD9}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{7C67BF73-BC64-432E-B995-E9373107BE09}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,16 +105,6 @@ Global
 		{7A8D6D3E-3625-4BE7-B3F2-765CCF50DCD9}.Release|x64.Build.0 = Release|Any CPU
 		{7A8D6D3E-3625-4BE7-B3F2-765CCF50DCD9}.Release|x86.ActiveCfg = Release|Any CPU
 		{7A8D6D3E-3625-4BE7-B3F2-765CCF50DCD9}.Release|x86.Build.0 = Release|Any CPU
-		{7C67BF73-BC64-432E-B995-E9373107BE09}.Debug|Any CPU.ActiveCfg = Debug
-		{7C67BF73-BC64-432E-B995-E9373107BE09}.Debug|ARM.ActiveCfg = Debug
-		{7C67BF73-BC64-432E-B995-E9373107BE09}.Debug|ARM64.ActiveCfg = Debug
-		{7C67BF73-BC64-432E-B995-E9373107BE09}.Debug|x64.ActiveCfg = Debug
-		{7C67BF73-BC64-432E-B995-E9373107BE09}.Debug|x86.ActiveCfg = Debug
-		{7C67BF73-BC64-432E-B995-E9373107BE09}.Release|Any CPU.ActiveCfg = Release
-		{7C67BF73-BC64-432E-B995-E9373107BE09}.Release|ARM.ActiveCfg = Release
-		{7C67BF73-BC64-432E-B995-E9373107BE09}.Release|ARM64.ActiveCfg = Release
-		{7C67BF73-BC64-432E-B995-E9373107BE09}.Release|x64.ActiveCfg = Release
-		{7C67BF73-BC64-432E-B995-E9373107BE09}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
