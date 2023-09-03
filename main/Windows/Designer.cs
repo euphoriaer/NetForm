@@ -95,6 +95,7 @@ namespace NetForm
 
 		private Windows.DesignerMeta CreateMeta(Point point, Data.DesignerMeta meta,DesignerLayer metaLayer)
 		{
+
 			var metaPanel = new Windows.DesignerMeta(meta);//todo 新层 layer ，点击修改Meta 数据
 			metaPanel.Location = point;
 			metaPanel.MainBtnClick += () =>
