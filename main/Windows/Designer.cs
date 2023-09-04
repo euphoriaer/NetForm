@@ -193,8 +193,7 @@ namespace NetForm
 		{
 			designer.SaveToLiteDB();
 			
-			//创建新表 
-
+			//创建新表
 			this.DialogResult = DialogResult.OK;
 		}
 
