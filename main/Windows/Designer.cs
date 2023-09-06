@@ -89,6 +89,7 @@ namespace NetForm
             //    CreateNewBtn.Location = new Point(firstPos.X, firstPos.Y + (layer.metas.Count) * VerticalInternal);
             //    CreateMeta(new Point(firstPos.X, firstPos.Y + (layer.metas.Count - 1) * VerticalInternal), newMeta, layer);
             //});
+
         }
 
         private UIButton CreateButton(Point point, string name, EventHandler action)
