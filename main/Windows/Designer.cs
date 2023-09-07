@@ -57,6 +57,7 @@ namespace NetForm
                         click?.Invoke();
                     },
                 };
+
                 node.options.Add(op);
 
             }
