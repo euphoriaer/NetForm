@@ -139,6 +139,7 @@ namespace NetForm
                 DrawDesigner(meta.Son);
             }
             Controls.Add(metaPanel);
+
             userControl.Add(metaPanel);
             return metaPanel;
 
